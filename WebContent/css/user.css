@@ -1,0 +1,87 @@
+body{
+	background-color: #F2F2F2;
+}
+.layui-nav {
+	/*position: absolute;*/
+	width: 100%;
+}
+
+#admin_in {
+	margin-top: 15px;
+}
+
+#admin_out {
+	margin-top: 15px;
+	;
+}
+
+.user_content {
+	width: 70%;
+	height: 500px;
+	background-color: #C2C2C2;
+	margin: 50px auto;
+}
+
+.user_info {
+	display: inline-block;
+	/*margin-left: 2%;*/
+	width: 70%;
+	height: 500px;
+	background-color: #F2F2F2;
+}
+
+.user_money {
+	position: relative;
+	float: right;
+	/*margin-right: 2%;*/
+	width: 30%;
+	height: 500px;
+	background-color: #72D1FF;
+}
+
+.info_div img {
+	margin-bottom: 15px;
+}
+
+#left_money {
+	width: 100px;
+	height: 40px;
+	margin: 60px auto 0 auto;
+	padding-top: 10px;
+	background-color: #ff3333;
+	border-radius: 20px;
+}
+
+#zuo {
+	height: 100%;
+	width: 20%;
+	background-color: #fff;
+	display: inline-block;
+}
+
+#you {
+	height: 100%;
+	width: 80%;
+	background-color: #fff;
+	float: right;
+	text-align: center;
+}
+
+#youzi {
+	width: 30%;
+	/*height: 50%;*/
+	background-color: #fff;
+	/*position: absolute;*/
+	/*width: auto;
+	height: 100px;
+	display: inline;
+	background-color: #1A54E7;
+	margin-top: 50px;*/
+}
+#zi{
+	margin-left: 40px;
+	margin-top: 75px;
+	/*font-family:/;*/
+	font-size: 30px;
+	font-weight: 700;
+}

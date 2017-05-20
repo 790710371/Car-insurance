@@ -1,0 +1,25 @@
+.register{
+	position: absolute;
+	width: 50%;
+	height: 100%;
+	margin-left: 25%;
+	background-color: #F3F3F3;
+	text-align: center;
+}
+.register_bar{
+	width: 80%;
+	margin-left: 20%;
+}
+
+.register>form{
+	/*margin-top: 60px;*/
+	/*text-align: center;*/
+}
+.register>form>.layui-form-item>.layui-form-label{
+	/*margin-left: 25%;*/
+	/*margin-left: 30px;*/
+	/*align-content: center;*/
+}
+/*#register_bar{
+	margin: 0,0,auto;
+}*/

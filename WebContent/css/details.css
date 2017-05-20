@@ -1,0 +1,169 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+body {
+	width: 80%;
+	height: 650px;
+	background-color:#e5e5e5;
+	/*margin: 0 auto;*/
+	margin-left: 10%;
+}
+.container{
+	width: 80%;
+	height: 100%;
+}
+.title_nav {
+	width: 100%;
+	/*height: 200px;*/
+	/*background-image: url(../img/title_nav.png);*/
+	background-color: #737383;
+}
+
+.content {
+	width: 100%;
+	height: 550px;
+}
+
+.content_left {
+	width: 70%;
+	height: 100%;
+	background-image: url(../img/bg.jpg);
+	display: inline-block;
+}
+
+.content_right {
+	width: 30%;
+	height: 100%;
+	background-image: url(../img/bg1.jpg);
+	display: inline;
+	float: right;
+}
+.content_bottom{
+	width: 100%;
+	height: 50px;
+	background-color: #333;
+}
+.form_info{
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+}
+.list_form_1{
+	width: 100%;
+	height: 150px;
+	list-style-type: none;
+}
+.name{
+	position: absolute;
+	display: inline-block;
+	width: 160px;
+	height: 20px;
+	/*background-color: ;*/
+	margin-top: 60px;
+}
+.name span{
+	display: block;
+	font-size: 30px;
+	color: #fff;
+	font-family: "微软雅黑";
+	font-weight: bold;
+	margin-left:20px;
+	margin-top: 50px;
+	display: inline;
+}
+.list_form_2{
+	width: 100%;
+	height: 50px;
+	list-style-type: none;
+}
+.list_form_2 span{
+	display: block;
+	font-size: 30px;
+	color: #fff;
+	font-weight: bold;
+	font-family: "微软雅黑";
+	padding-left: 30px;
+}
+.my_left_money{
+	width: 100%;
+	height: 10%;
+	text-align: center;
+	font-size: 30px;
+	color: #fff;
+	font-weight: bold;
+	font-family: "微软雅黑";
+	padding-top: 20px;
+}
+.money_data{
+	width:100%;
+	height:90% ;
+	text-align: center;
+}
+.money_border{
+	width: 150px;
+	height: 60px;
+	padding-top: 20px;
+	background-color:#FF5722;
+	border-radius: 5px;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	margin: 0 auto;
+	margin-top: 30px;
+}
+.money_border p{
+	font-size: 30px;
+	color: #FFFFFF;
+	font-family: "微软雅黑";
+	font-weight: bold;
+}
+.money_border1{
+	/*width: 150px;
+	height: 60px;
+	padding-top: 10px;
+	background-color: red;
+	border-radius: 5px;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;*/
+	margin: 0 auto;
+	margin-top: 30px;
+}
+.money_border1 p{
+	font-size: 30px;
+	color: #FFFFFF;
+	font-family: "微软雅黑";
+	font-weight: bold;
+}
+.money_border2{
+	/*width: 150px;
+	height: 60px;
+	padding-top: 10px;
+	background-color: red;
+	border-radius: 5px;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;*/
+	margin: 0 auto;
+	margin-top: 30px;
+}
+.money_border2 p{
+	font-size: 30px;
+	color: #FFFFFF;
+	font-family: "微软雅黑";
+	font-weight: bold;
+}
+
+
+#toubao > span{
+	font-family:"微软雅黑";
+	font-weight: bolder;
+	font-size: large;
+}
+#weihu > span{
+	font-family:"微软雅黑";
+	font-weight: bolder;
+	font-size: large;
+}
+.my_left_money{
+	margin-top: 80px;
+}

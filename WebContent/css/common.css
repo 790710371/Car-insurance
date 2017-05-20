@@ -1,0 +1,14 @@
+#user_info{
+	/*float: right;*/
+	color: #fff;
+}
+#user_info_div{
+	/*position: relative;*/
+	display: inline;
+	width: 150px;
+	height: 110%;
+	/*background-color: #0098;*/
+	float: right;
+	margin-top: 20px;
+	/*width: ;*/
+}
