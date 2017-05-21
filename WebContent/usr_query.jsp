@@ -109,7 +109,7 @@
 							<button style="margin-left: 10px" class="layui-btn layui-btn-normal">搜索</button>
 							<dl class="am-icon-home" style="float: right;">
 								当前位置： 首页 >
-								<a href="#">用户管理</a>
+								<a href="#">会员查询</a>
 							</dl>
 							</div>
 							

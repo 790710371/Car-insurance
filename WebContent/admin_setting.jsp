@@ -1,4 +1,6 @@
-<!doctype html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html class="no-js">
 <head>
 <meta charset="utf-8">
@@ -13,17 +15,14 @@
 <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
 <meta name="apple-mobile-web-app-title" content="Amaze UI" />
 <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
-<link rel="stylesheet" href="assets/css/admin.css">
+<link rel="stylesheet" href="assets/css/admin.css"/>
+<link rel="stylesheet" href="layui/css/layui.css"/>
+<script src="layui/layui.js"></script>
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/app.js"></script>
 </head>
 <body>
 <!--[if lte IE 9]><p class="browsehappy">升级你的浏览器吧！ <a href="http://se.360.cn/" target="_blank">升级浏览器</a>以获得更好的体验！</p><![endif]-->
-
-
-
-
-
 
 </head>
 
@@ -72,7 +71,7 @@
 <div class="nav-navicon admin-main admin-sidebar">
     
     
-    <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"> 欢迎系统管理员:</div>
+    <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"> 欢迎系统管理员：<%=request.getParameter("usr_account") %></div>
     <div class="sideMenu">
       <h3 class="am-icon-flag"><em></em> <a href="#">会员管理</a></h3>
       <ul>
@@ -210,28 +209,8 @@
           </div>
         </div>
       </form>
-    
-
-
-
-
-
-
-
-
-
-
-
     </div>
-
-	
-
 </div>
-	
-	
-	
-	
-	
 	<div class="am-popup am-popup-inner" id="my-popups">
 	
 	    <div class="am-popup-hd">
@@ -297,29 +276,8 @@
           </div>
         </div>
       </form>
-    
-
-
-
-
-
-
-
-
-
-
-
     </div>
-
-	
-
 </div>
-	
-	
-	
-	
-
-
 <div class="admin-biaogelist">
 	
     <div class="listbiaoti am-cf">
@@ -327,36 +285,9 @@
       
       <dl class="am-icon-home" style="float: right;">当前位置： 管理记录 > <a href="#">操作记录
       <!--这里打开的是新页面-->
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
     </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-	
-	
-
-
-    <form class="am-form am-g">
+			<div class="tab_content">
+   
           <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover">
             <thead>
               <tr class="am-success">
@@ -373,7 +304,7 @@
               <tr>
                 
                 <td>1</td>
-                <td><a href="#">隔壁老王</a></td>
+                <td><a href="#">麻花藤</a></td>
                 <td>管理员</td>
                 <td class="am-hide-sm-only">用户投保</td><td class="am-hide-sm-only">186.26.32.250</td>
                 <td class="am-hide-sm-only">2017年5月19日 7:28:47</td>
@@ -398,7 +329,7 @@
               </tr>
               <tr>
                 <td>2</td>
-                <td><a href="#">寡妇李氏</a></td>
+                <td><a href="#">王贱林</a></td>
                 <td>管理员</td>
                 <td class="am-hide-sm-only">购买车险</td><td class="am-hide-sm-only">156.12.17.334</td>
                 <td class="am-hide-sm-only">2017年5月19日 7:50:47</td>
@@ -416,23 +347,8 @@
               </tr>
             </tbody>
           </table>
-          <ul class="am-pagination am-fr">
-                <li class="am-disabled"></li>
-                <li class="am-active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">»</a></li>
-              </ul>
-          
-          
-          
-      
-        </form>
- 
- 
- 
+    		<div id="operate_record" style="text-align:center;"></div>
+    		</div>
  
  <div class="foods">
   <ul>
@@ -469,4 +385,16 @@
 
 
 </body>
+				<script>
+		layui.use(['laypage', 'layer'], function() {
+			var laypage = layui.laypage,
+				layer = layui.layer;
+
+			laypage({
+				cont: 'operate_record',
+				pages: 100,
+				skip: true
+			});
+		});
+	</script>
 </html>
