@@ -45,9 +45,6 @@
 							<li>
 								<a href="">添加用户</a>
 							</li>
-							<li>
-								<a href="">删除用户</a>
-							</li>
 						</ul>
 						<h3 class="am-icon-cart-plus"><em></em> <a href="#"> 管理记录</a></h3>
 						<ul>

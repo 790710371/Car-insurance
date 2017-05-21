@@ -46,6 +46,9 @@
 							<li>
 								<a href="">添加用户</a>
 							</li>
+							<li>
+								<a href="">删除用户</a>
+							</li>
 						</ul>
 						<h3 class="am-icon-cart-plus"><em></em> <a href="#"> 管理记录</a></h3>
 						<ul>
@@ -102,108 +105,104 @@
 					<div class="admin-biaogelist">
 						<div class="listbiaoti am-cf">
 							<ul class="am-icon-flag on">
-								会员查询
+								会员添加
 							</ul>
-							<div style="margin-top: 2px;margin-right: 50px">
-				<input style="width: 30%;display: inline;margin-left: 350px"" type="text" name="password" required lay-verify="required" placeholder="请输入用户姓名" autocomplete="off" class="layui-input">
-							<button style="margin-left: 10px" class="layui-btn layui-btn-normal">搜索</button>
 							<dl class="am-icon-home" style="float: right;">
 								当前位置： 首页 >
-								<a href="#">用户管理</a>
+								<a href="#">添加用户</a>
 							</dl>
-							</div>
+		
 							
 							<!--data-am-modal="{target: '#my-popup'}" 弹出层 ID  弹出层 190行 开始  271行结束-->
 							
 						</div>
-<!-- 此处填写tab里面的内容 -->
 					<div class="tab_content">
+<!-- 此处填写tab里面的内容 -->
+					<div class="register">
+		<div class="register_bar">
+			<form class="layui-form" action="<%=request.getContextPath()%>/LR.action?action=Register" method="post">
+				<div class="layui-form-item">
+					<label class="layui-form-label">用户名</label>
+					<div class="layui-input-inline">
+						<input type="text" name="usr_account" required lay-verify="required"
+							placeholder="请输入用户名" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">密码</label>
+					<div class="layui-input-inline">
+						<input type="password" name="usr_pwd" required lay-verify="required"
+							placeholder="请输入密码" autocomplete="off" class="layui-input">
+					</div>
+					<div class="layui-form-mid layui-word-aux">请输入以字母开头</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">邮箱</label>
+					<div class="layui-input-inline">
+						<input type="text" name="usr_email" required lay-verify="required"
+							placeholder="请输入邮箱" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">姓名</label>
+					<div class="layui-input-inline">
+						<input type="text" name="usr_name" required lay-verify="required"
+							placeholder="请输入姓名" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label" >身份证</label>
+					<div class="layui-input-inline">
+						<input  type="text" name="usr_IDcard" required
+							lay-verify="required" placeholder="请输入身份证号码" autocomplete="off"
+							class="layui-input" >
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">车牌号</label>
+					<div class="layui-input-inline">
+						<input type="text" name="usr_carID" required lay-verify="required"
+							placeholder="请输入车牌号" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">手机号</label>
+					<div class="layui-input-inline">
+						<input type="text" name="usr_phone" required lay-verify="required"
+							placeholder="请输入手机号" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+			</form>
+		</div>
+		<button id="submitForm" class="layui-btn" lay-submit
+			lay-filter="formDemo">立即提交</button>
+		<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+	</div>
+					
+					
+					
+					
+					</div>
 												
-						<table class="layui-table" lay-even="" lay-skin="nob">
-  <colgroup>
-    <col width="70">
-    <col width="70">
-    <col width="100">
-    <col width="50">
-    <col width="50">
-    <col width="50">
-    <col width="50">
-  </colgroup>
-  <thead>
-    <tr>
-      <th>用户名</th>
-      <th>姓名</th>
-      <th>邮箱</th>
-      <th>手机号</th>
-      <th>身份证</th>
-      <th>车牌号</th>
-      <th>删除用户</th>
-    </tr> 
-  </thead>
-  <tbody>
-    <tr>
-      <td>Mero</td>
-      <td>陈磊</td>
-      <td>790710371@qq.com</td>
-      <td>1826596263</td>
-      <td>43042619903655</td>
-      <td>鲁x：127891</td>
-      <td><button class="layui-btn"><i class="layui-icon">&#xe640;</i></button></td>
-    </tr>
-     <tr>
-      <td>Grow</td>
-      <td>张贺</td>
-      <td>45255223@qq.com</td>
-      <td>16956332322</td>
-      <td>420122355335624</td>
-      <td>豫C：64231B</td>
-      <td><button class="layui-btn"><i class="layui-icon">&#xe640;</i></button></td>
-    </tr>
-       <tr>
-      <td>wolf</td>
-      <td>陆志</td>
-      <td>45255223@qq.com</td>
-      <td>13645116328</td>
-      <td>420365125635789</td>
-      <td>粤A：968319</td>
-      <td><button class="layui-btn"><i class="layui-icon">&#xe640;</i></button></td>
-    </tr>
-          <tr>
-      <td>wolf</td>
-      <td>陆志</td>
-      <td>45255223@qq.com</td>
-      <td>13645116328</td>
-      <td>420365125635789</td>
-      <td>粤A：968319</td>
-      <td><button class="layui-btn"><i class="layui-icon">&#xe640;</i></button></td>
-    </tr>
-          <tr>
-      <td>wolf</td>
-      <td>陆志</td>
-      <td>45255223@qq.com</td>
-      <td>13645116328</td>
-      <td>420365125635789</td>
-      <td>粤A：968319</td>
-      <td><button class="layui-btn"><i class="layui-icon">&#xe640;</i></button></td>
-    </tr>
-  </tbody>
-</table>
 <div id="page_query" style="text-align: center;"></div> 
-</div>
-
-	<script>
-		layui.use(['laypage', 'layer'], function() {
-			var laypage = layui.laypage,
-				layer = layui.layer;
-
-			laypage({
-				cont: 'page_query',
-				pages: 100,
-				skip: true
-			});
-		});
-	</script>
 
 		</body>
+<script type="text/javascript">
+	$("#submitForm").click(function() {
+		//alert("hello world");
+		$("form").submit();
+	})
+</script>
+<script>
+	//Demo
+	layui.use('form', function() {
+		var form = layui.form();
 
+		//监听提交
+		form.on('submit(formDemo)', function(data) {
+			layer.msg(JSON.stringify(data.field));
+			return false;
+		});
+	});
+</script>
 </html>
