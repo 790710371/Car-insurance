@@ -36,7 +36,7 @@
 			</header>
 			<div class="am-cf admin-main">
 				<div class="nav-navicon admin-main admin-sidebar">
-					<div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"> 欢迎系统管理员：<%=request.getSession().getAttribute("logininfo") %>&nbsp;-><a href="http://127.0.0.1:8001/mycar/LR.action?action=Logout" >注销</a></div>
+					<div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"> 欢迎系统管理员：<%=request.getParameter("usr_account")%>&nbsp;-><a href="http://127.0.0.1:8001/mycar/LR.action?action=Logout"><p style="color:#aeb2b7;display: inline-block">注销</p></a></div>
 					<div class="sideMenu">
 						<h3 class="am-icon-flag"><em></em> <a href="#">用户管理</a></h3>
 						<ul>

@@ -283,7 +283,7 @@
     <div class="listbiaoti am-cf">
       <ul class="am-icon-flag on"> 管理记录</ul>
       
-      <dl class="am-icon-home" style="float: right;">当前位置： 管理记录 > <a href="#">操作记录
+      <dl class="am-icon-home" style="float: right;">当前位置： 管理记录 > <a href="#">设置管理员
       <!--这里打开的是新页面-->
     </div>
 			<div class="tab_content">

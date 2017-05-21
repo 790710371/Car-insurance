@@ -119,7 +119,7 @@ public class UserServlet extends HttpServlet {
 							public void managerLogined() {
 								System.out.println("管理员登录成功");
 								try {
-									request.getRequestDispatcher("/usr_admin.jsp").forward(request, response);
+									request.getRequestDispatcher("/usr_query.jsp").forward(request, response);
 								} catch (ServletException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
