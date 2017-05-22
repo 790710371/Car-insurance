@@ -41,16 +41,16 @@
 						<h3 class="am-icon-flag"><em></em> <a href="#">用户管理</a></h3>
 						<ul>
 							<li>
-								<a href="">会员查询</a>
+								<a href="usr_query.jsp">会员查询</a>
 							</li>
 							<li>
-								<a href="">添加用户</a>
+								<a href="#">添加用户</a>
 							</li>
 						</ul>
-						<h3 class="am-icon-cart-plus"><em></em> <a href="#"> 管理记录</a></h3>
+						<h3 class="am-icon-cart-plus"><em></em> <a href="#">管理记录</a></h3>
 						<ul>
-          <li><a href="">操作记录</a></li>
-          <li><a href="">设置管理员</a></li>
+          <li><a href="admin_record.jsp">操作记录</a></li>
+          <li><a href="admin_setting.jsp">设置管理员</a></li>
       </ul>
 						<h3 class="am-icon-volume-up"><em></em> <a href="#">信息通知</a></h3>
 						<ul>
@@ -116,7 +116,7 @@
 					<div class="tab_content">
 <!-- 此处填写tab里面的内容 -->
 					<div class="register">
-		<div class="register_bar">
+		<div class="register_bar" style="margin-left: 100px">
 			<form class="layui-form" action="<%=request.getContextPath()%>/LR.action?action=Register" method="post">
 				<div class="layui-form-item">
 					<label class="layui-form-label">用户名</label>
@@ -169,11 +169,13 @@
 							placeholder="请输入手机号" autocomplete="off" class="layui-input">
 					</div>
 				</div>
+				<div style="margin-left: 50px">
+					<button id="submitForm" class="layui-btn" lay-submit
+						lay-filter="formDemo">立即提交</button>
+					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+				</div>
 			</form>
 		</div>
-		<button id="submitForm" class="layui-btn" lay-submit
-			lay-filter="formDemo">立即提交</button>
-		<button type="reset" class="layui-btn layui-btn-primary">重置</button>
 	</div>
 					
 					

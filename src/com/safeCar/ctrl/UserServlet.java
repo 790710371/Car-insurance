@@ -70,7 +70,7 @@ public class UserServlet extends HttpServlet {
 							@Override
 							public void onSuccess() {
 								try {
-									request.getRequestDispatcher("/Login.jsp").forward(request, response);
+									request.getRequestDispatcher("/login.jsp").forward(request, response);
 								} catch (ServletException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
@@ -131,7 +131,15 @@ public class UserServlet extends HttpServlet {
 							
 							@Override
 							public void loginFail() {
-								System.out.println("登陆失败");
+								try {
+									request.getRequestDispatcher("/login.jsp").forward(request, response);
+								} catch (ServletException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								} catch (IOException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
 							}
 						});
 						break;

@@ -15,5 +15,8 @@ public class Config {
 	public static final String VALUE_LOGIN = "Login";
 	public static final String VALUE_LOGOUT= "Logout";
 	public static final String VALUE_ADMIN_QUERY = "AdminQuery";
+	public static final String VALUE_ADD_USER = "AddUser";
+	public static final String VALUE_OPEREATE_RECORD="QueryOperateRecord";
+	public static final String VALUE_SETTING_ADMIN = "SettingAdm";
 }
 

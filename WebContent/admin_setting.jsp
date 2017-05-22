@@ -75,14 +75,13 @@
     <div class="sideMenu">
       <h3 class="am-icon-flag"><em></em> <a href="#">会员管理</a></h3>
       <ul>
-        <li><a href="">会员查询</a></li>
-         <li><a href="">添加用户</a></li>
-        <li><a href="">删除用户</a></li>
+        <li><a href="usr_query.jsp">会员查询</a></li>
+         <li><a href="add_usr.jsp">添加用户</a></li>
       </ul>
       <h3 class="am-icon-cart-plus on"><em></em> <a href="#">管理记录</a></h3>
       <ul>
-          <li><a href="">操作记录</a></li>
-          <li><a href="">设置管理员</a></li>
+          <li><a href="admin_record.jsp">操作记录</a></li>
+          <li><a href="#">设置管理员</a></li>
       </ul>
       <h3 class="am-icon-volume-up"><em></em> <a href="#">信息通知</a></h3>
       <ul>
@@ -286,76 +285,31 @@
       <dl class="am-icon-home" style="float: right;">当前位置： 管理记录 > <a href="#">设置管理员
       <!--这里打开的是新页面-->
     </div>
-			<div class="tab_content">
-   
-          <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover">
-            <thead>
-              <tr class="am-success">
-
-                <th class="table-id">ID</th>
-                <th class="table-title">用户名</th>
-                <th class="table-type">用户身份</th>
-                <th class="table-author am-hide-sm-only">操作</th>
-                <th class="table-author am-hide-sm-only">ip地址</th>
-                <th class="table-date am-hide-sm-only">操作日期</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                
-                <td>1</td>
-                <td><a href="#">麻花藤</a></td>
-                <td>管理员</td>
-                <td class="am-hide-sm-only">用户投保</td><td class="am-hide-sm-only">186.26.32.250</td>
-                <td class="am-hide-sm-only">2017年5月19日 7:28:47</td>
-                <!--<td>
-                	
-                	
-                      	
-                	<div class="am-btn-toolbar">
-                    <div class="am-btn-group am-btn-group-xs">
-                      <button class="am-btn am-btn-default am-btn-xs am-text-success am-round"><span class="am-icon-search" title="查看订单详情"></span> </button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改订单"><span class="am-icon-pencil-square-o"></span></button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-danger am-round" title="删除订单"><span class="am-icon-trash-o" ></span></button>
-                    </div>
-                  </div>
-                	
-                	
-                	
-                	
-                	
-                	
-                </td>-->
-              </tr>
-              <tr>
-                <td>2</td>
-                <td><a href="#">王贱林</a></td>
-                <td>管理员</td>
-                <td class="am-hide-sm-only">购买车险</td><td class="am-hide-sm-only">156.12.17.334</td>
-                <td class="am-hide-sm-only">2017年5月19日 7:50:47</td>
-                <!--<td>
-                	
-                	<div class="am-btn-toolbar">
-                    <div class="am-btn-group am-btn-group-xs">
-                      <button class="am-btn am-btn-default am-btn-xs am-text-success am-round"><span class="am-icon-search" title="查看订单详情"></span> </button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改订单"><span class="am-icon-pencil-square-o"></span></button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-danger am-round" title="删除订单"><span class="am-icon-trash-o" ></span></button>
-                    </div>
-                  </div>
-                
-                </td>-->
-              </tr>
-            </tbody>
-          </table>
-    		<div id="operate_record" style="text-align:center;"></div>
-    		</div>
+      <div class="tab_content">
+      <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
+  		<legend>您可以分配管理员职位方便更好地管理您的系统</legend>
+	</fieldset>
+<div style="margin-left: 50px">
+<form class="layui-form layui-form-pane" action="">
+		添加管理员:
+    <div class="layui-input-inline">
+      		<input id="ipt_name" type="text" name="username" lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input" >
+    </div>
+    <button  id="sub_ipt" class="layui-btn" lay-submit="" lay-filter="demo1">确定</button>
+</form>
+<table>
+		<tr>
+			<th>用户名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+			<th>职位&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+		</tr>
+	</table>
+</div>
+      </div>
+    </div>
  
  <div class="foods">
   <ul>
   </ul>
-  <dl>
-    <a href="" title="返回头部" class="am-icon-btn am-icon-arrow-up"></a>
-  </dl>
 </div>
 
 
@@ -385,7 +339,7 @@
 
 
 </body>
-				<script>
+	<script>
 		layui.use(['laypage', 'layer'], function() {
 			var laypage = layui.laypage,
 				layer = layui.layer;
@@ -396,5 +350,41 @@
 				skip: true
 			});
 		});
+	</script>
+	//在此处进行提交
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$("#sub_ipt").click(function(){
+			var usr_account =document.getElementById("ipt_name").value ;
+			//接下来进行提交
+			//获取XMLHTTPS
+			var xmlHttps = ajaxHttpFunction(); 
+			//此处采用get方法
+			xmlHttps.open("get","/adm?action=SettingAdm&usr_account="+usr_account,true);
+			
+		});
+	});
+	
+	function ajaxHttpFunction(){
+		var xmlHttps ;
+		try{
+			xmlHttps = new XMLHttpRequest();
+		}catch (e) {
+			// 捕捉一下异常
+			try{
+			xmlHttps = new ActiveXObject("Msxm12.XMLHTTP");
+			}catch (e) {
+				xmlHttps = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+		}
+		return xmlHttps;
+	}
+	</script>
+	<script>
+	layui.use('submit(demo1)',function(data){
+		layer.alert(JSON.stringify(data.field), {
+		      title: '最终的提交信息'
+		    })
+	});
 	</script>
 </html>

@@ -41,16 +41,16 @@
 						<h3 class="am-icon-flag"><em></em> <a href="#">用户管理</a></h3>
 						<ul>
 							<li>
-								<a href="">会员查询</a>
+								<a href="#">会员查询</a>
 							</li>
 							<li>
-								<a href="">添加用户</a>
+								<a href="add_usr.jsp">添加用户</a>
 							</li>
 						</ul>
 						<h3 class="am-icon-cart-plus"><em></em> <a href="#"> 管理记录</a></h3>
 						<ul>
-          <li><a href="">操作记录</a></li>
-          <li><a href="">设置管理员</a></li>
+          <li><a href="admin_record.jsp">操作记录</a></li>
+          <li><a href="admin_setting.jsp">设置管理员</a></li>
       </ul>
 						<h3 class="am-icon-volume-up"><em></em> <a href="#">信息通知</a></h3>
 						<ul>

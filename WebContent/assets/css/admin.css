@@ -304,3 +304,4 @@ form .form-group:last-child{padding-bottom:0;}
 .soso .am-xiao{ padding: 0px 10px; height: 28px; font-size: 14px; color: #7dbc2e; border-left: none;}
 .ycfg{ height: 28px; overflow: hidden !important;}
 .tab_content{width: 98%;height: 400px;margin:0 auto 0 auto;overflow-x: hidden;overflow-y:auto;background-color: #ffffff;}
+。layui-form-item{margin-left: 50px;position: absolute; }

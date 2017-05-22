@@ -75,14 +75,13 @@
     <div class="sideMenu">
       <h3 class="am-icon-flag"><em></em> <a href="#">会员管理</a></h3>
       <ul>
-        <li><a href="">会员查询</a></li>
-         <li><a href="">添加用户</a></li>
-        <li><a href="">删除用户</a></li>
+        <li><a href="usr_query.jsp">会员查询</a></li>
+         <li><a href="add_usr.jsp">添加用户</a></li>
       </ul>
       <h3 class="am-icon-cart-plus on"><em></em> <a href="#">管理记录</a></h3>
       <ul>
-          <li><a href="">操作记录</a></li>
-          <li><a href="">设置管理员</a></li>
+          <li><a href="#">操作记录</a></li>
+          <li><a href="admin_setting.jsp">设置管理员</a></li>
       </ul>
       <h3 class="am-icon-volume-up"><em></em> <a href="#">信息通知</a></h3>
       <ul>
@@ -283,7 +282,7 @@
     <div class="listbiaoti am-cf">
       <ul class="am-icon-flag on"> 管理记录</ul>
       
-      <dl class="am-icon-home" style="float: right;">当前位置： 管理记录 > <a href="#">设置管理员
+      <dl class="am-icon-home" style="float: right;">当前位置： 管理记录 > <a href="#">操作记录
       <!--这里打开的是新页面-->
     </div>
 			<div class="tab_content">
