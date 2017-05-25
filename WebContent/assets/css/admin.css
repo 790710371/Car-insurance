@@ -303,5 +303,24 @@ form .form-group:last-child{padding-bottom:0;}
 .soso .am-input-sm{padding: 0 4px; height: 28px; line-height: 28px; border: solid 1px #e6e6e6;border-left: none; border-right: none; overflow: hidden}
 .soso .am-xiao{ padding: 0px 10px; height: 28px; font-size: 14px; color: #7dbc2e; border-left: none;}
 .ycfg{ height: 28px; overflow: hidden !important;}
-.tab_content{width: 98%;height: 400px;margin:0 auto 0 auto;overflow-x: hidden;overflow-y:auto;background-color: #ffffff;}
+<!--新增加的樣式-->
+
+.radius-border-operation{padding-left:10px;padding-top:1px;border:1px solid #3caf11;border-radius:25px;-moz-border-radius:25px;-os-border-radius:25px}
+.tab_content_01{
+	width:1123.08px;
+	height:380px;
+	margin-top:0px;
+	margin-bottom:0px;
+	margin-left:auto;
+	margin-right:auto;
+	overflow-x: hidden;
+	overflow-y:auto;
+	background-color: #f1fafa;
+	}
 。layui-form-item{margin-left: 50px;position: absolute; }
+.usr_notice{padding-left: 30px}
+.query_insure_record{
+	width: 100%;
+	height:30%;
+	background-color: #f1fafa;
+}

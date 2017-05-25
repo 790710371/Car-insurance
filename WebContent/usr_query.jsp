@@ -38,7 +38,7 @@
 				<div class="nav-navicon admin-main admin-sidebar">
 					<div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"> 欢迎系统管理员：<%=request.getParameter("usr_account")%>&nbsp;-><a href="http://127.0.0.1:8001/mycar/LR.action?action=Logout"><p style="color:#aeb2b7;display: inline-block">注销</p></a></div>
 					<div class="sideMenu">
-						<h3 class="am-icon-flag"><em></em> <a href="#">用户管理</a></h3>
+						<h3 class="am-icon-users on"><em></em> <a href="#">用户管理</a></h3>
 						<ul>
 							<li>
 								<a href="#">会员查询</a>
@@ -48,30 +48,28 @@
 							</li>
 						</ul>
 						<h3 class="am-icon-cart-plus"><em></em> <a href="#"> 管理记录</a></h3>
-						<ul>
-          <li><a href="admin_record.jsp">操作记录</a></li>
-          <li><a href="admin_setting.jsp">设置管理员</a></li>
-      </ul>
-						<h3 class="am-icon-volume-up"><em></em> <a href="#">信息通知</a></h3>
-						<ul>
-							<li>站内消息 /留言 </li>
-							<li>短信</li>
-							<li>邮件</li>
-							<li>微信</li>
-							<li>客服</li>
-						</ul>
-						<h3 class="am-icon-gears"><em></em> <a href="#">系统设置</a></h3>
-						<ul>
-							<li>数据备份</li>
-							<li>邮件/短信管理</li>
-							<li>上传/下载</li>
-							<li>权限</li>
-							<li>网站设置</li>
-							<li>第三方支付</li>
-							<li>提现 /转账 出入账汇率</li>
-							<li>平台设置</li>
-							<li>声音文件</li>
-						</ul>
+							<ul>
+						          <li><a href="admin_record.jsp">操作记录</a></li>
+						          <li><a href="admin_setting.jsp">设置管理员</a></li>
+						     </ul>
+						  <h3 class="am-icon-flag"><em></em> <a href="#">商家功能</a></h3>
+						      <ul>
+							        <li><a href="usr_insure.jsp">投保修车</a> </li>
+							        <li><a href="insure_record.jsp">投保记录</a></li>
+							        <li><a href="check_record.jsp">修车记录</a></li>
+      							</ul>
+						  <h3 class="am-icon-gears"><em></em> <a href="#">系统设置</a></h3>
+								<ul>
+									<li>数据备份</li>
+									<li>邮件/短信管理</li>
+									<li>上传/下载</li>
+									<li>权限</li>
+									<li>网站设置</li>
+									<li>第三方支付</li>
+									<li>提现 /转账 出入账汇率</li>
+									<li>平台设置</li>
+									<li>声音文件</li>
+								</ul>
 					</div>
 					<!-- sideMenu End -->
 
@@ -106,7 +104,7 @@
 							</ul>
 							<div style="margin-top: 2px;margin-right: 50px">
 				<input style="width: 30%;display: inline;margin-left: 350px"" type="text" name="password" required lay-verify="required" placeholder="请输入用户姓名" autocomplete="off" class="layui-input">
-							<button style="margin-left: 10px" class="layui-btn layui-btn-normal">搜索</button>
+							<button id="search" style="margin-left: 10px" class="layui-btn layui-btn-normal">搜索</button>
 							<dl class="am-icon-home" style="float: right;">
 								当前位置： 首页 >
 								<a href="#">会员查询</a>
@@ -114,10 +112,10 @@
 							</div>
 							
 							<!--data-am-modal="{target: '#my-popup'}" 弹出层 ID  弹出层 190行 开始  271行结束-->
-							
+
 						</div>
 <!-- 此处填写tab里面的内容 -->
-					<div class="tab_content">
+												<div class="tab_content_01">
 												
 						<table class="layui-table" lay-even="" lay-skin="nob">
   <colgroup>
@@ -201,6 +199,11 @@
 				pages: 100,
 				skip: true
 			});
+		});
+	</script>
+	<script>
+		$("#search").click(function(){
+			alert("测试");
 		});
 	</script>
 

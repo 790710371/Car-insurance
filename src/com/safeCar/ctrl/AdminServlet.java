@@ -38,6 +38,9 @@ public class AdminServlet extends HttpServlet {
 			case Config.VALUE_ADD_USER:
 				//添加新用户
 				break;
+			case Config.VALUE_DEL_USR:
+				//删除用户
+				break;
 			case Config.VALUE_OPEREATE_RECORD:
 				//管理员操作记录
 				break;

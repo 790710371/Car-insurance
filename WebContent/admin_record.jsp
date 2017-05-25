@@ -40,28 +40,6 @@
  <li class="kuanjie">
  	
  </li>
-
- <li class="soso">
- 	
-<p>   
-	
-	<select data-am-selected="{btnWidth: 70, btnSize: 'sm', btnStyle: 'default'}">
-          <option value="b">全部</option>
-          <option value="o">产品</option>
-          <option value="o">会员</option>
-          
-        </select>
-
-</p>
-
-<p class="ycfg"><input type="text" class="am-form-field am-input-sm" placeholder="请输入搜索内容" /></p>
-<p><button class="am-btn am-btn-xs am-btn-default am-xiao"><i class="am-icon-search"></i></button></p>
- </li>
-
-
-
-
-      <li class="am-hide-sm-only" style="float: right;"><a href="javascript:;" id="admin-fullscreen"><span class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
     </ul>
   </div>
 </header>
@@ -83,14 +61,11 @@
           <li><a href="#">操作记录</a></li>
           <li><a href="admin_setting.jsp">设置管理员</a></li>
       </ul>
-      <h3 class="am-icon-volume-up"><em></em> <a href="#">信息通知</a></h3>
-      <ul>
-        <li>站内消息 /留言 </li>
-        <li>短信</li>
-        <li>邮件</li>
-        <li>微信</li>
-        <li>客服</li>
-      </ul>
+          <h3 class="am-icon-users on"><em></em> <a href="#">商家功能</a></h3>
+       <li><a href="usr_insure.jsp">投保修车 </a></li>
+        <li><a href="insure_record.jsp">投保记录</a></li>
+        <li><a href="check_record.jsp">修车记录</a></li>
+
       <h3 class="am-icon-gears"><em></em> <a href="#">系统设置</a></h3>
       <ul>
         <li>数据备份</li>
@@ -285,7 +260,7 @@
       <dl class="am-icon-home" style="float: right;">当前位置： 管理记录 > <a href="#">操作记录
       <!--这里打开的是新页面-->
     </div>
-			<div class="tab_content">
+			<div class="tab_content_01">
    
           <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover">
             <thead>
@@ -350,11 +325,6 @@
     		</div>
  
  <div class="foods">
-  <ul>
-  </ul>
-  <dl>
-    <a href="" title="返回头部" class="am-icon-btn am-icon-arrow-up"></a>
-  </dl>
 </div>
 
 

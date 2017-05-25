@@ -38,7 +38,7 @@
 				<div class="nav-navicon admin-main admin-sidebar">
 					<div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"> 欢迎系统管理员：<%=request.getSession().getAttribute("logininfo") %>&nbsp;-><a href="http://127.0.0.1:8001/mycar/LR.action?action=Logout" >注销</a></div>
 					<div class="sideMenu">
-						<h3 class="am-icon-flag"><em></em> <a href="#">用户管理</a></h3>
+						<h3 class="am-icon-users on"><em></em> <a href="#">用户管理</a></h3>
 						<ul>
 							<li>
 								<a href="usr_query.jsp">会员查询</a>
@@ -47,19 +47,17 @@
 								<a href="#">添加用户</a>
 							</li>
 						</ul>
-						<h3 class="am-icon-cart-plus"><em></em> <a href="#">管理记录</a></h3>
+						<h3 class="am-icon-cart-plus"><em></em> <a href="admin_record.jsp">管理记录</a></h3>
 						<ul>
           <li><a href="admin_record.jsp">操作记录</a></li>
           <li><a href="admin_setting.jsp">设置管理员</a></li>
       </ul>
-						<h3 class="am-icon-volume-up"><em></em> <a href="#">信息通知</a></h3>
-						<ul>
-							<li>站内消息 /留言 </li>
-							<li>短信</li>
-							<li>邮件</li>
-							<li>微信</li>
-							<li>客服</li>
-						</ul>
+						  <h3 class="am-icon-flag"><em></em> <a href="#">商家管理</a></h3>
+      <ul>
+        <li><a href="usr_insure.jsp">投保修车</a> </li>
+        <li><a href="insure_record.jsp">投保记录</a></li>
+        <li><a href="check_record.jsp">修车记录</a></li>
+      </ul>
 						<h3 class="am-icon-gears"><em></em> <a href="#">系统设置</a></h3>
 						<ul>
 							<li>数据备份</li>
@@ -113,7 +111,7 @@
 							<!--data-am-modal="{target: '#my-popup'}" 弹出层 ID  弹出层 190行 开始  271行结束-->
 							
 						</div>
-					<div class="tab_content">
+					<div class="tab_content_01">
 <!-- 此处填写tab里面的内容 -->
 					<div class="register">
 		<div class="register_bar" style="margin-left: 100px">

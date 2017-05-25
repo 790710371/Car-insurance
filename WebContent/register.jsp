@@ -7,7 +7,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>用户注册页面</title>
+<title>用户注册</title>
 <link rel="stylesheet" href="layui/css/layui.css" type="text/css" />
 <link rel="stylesheet" href="css/register.css" />
 <script src="js/jquery-1.12.0.min.js"></script>
