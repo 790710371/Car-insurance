@@ -2,7 +2,12 @@
 	contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%
+ response.setHeader("Pragma","No-cache");
+ response.setHeader("Cache-Control","No-cache");
+ response.setDateHeader("Expires", -1);
+ response.setHeader("Cache-Control", "No-store");
+%>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 
@@ -20,7 +25,7 @@
 		<link rel="stylesheet" href="css/style.css">
 
 	</head>
-
+	
 	<body oncontextmenu="return false">
 		<div class="page-container">
 			<h1>欢迎登陆</h1>
@@ -62,23 +67,22 @@
 			$(".btn").click(function() {
 				is_hide();
 			})
-			var u = $("input[name=username]");
-			var p = $("input[name=password]");
 			$("#submit1").live('click', function() {
-				if(u.val() == '' || p.val() == '') {
+				var u = $(".username").val();
+				var p = $(".password").val();
+				if(u== '' || p == '') {
 					$("#ts").html("用户名或密码不能为空~");
 					is_show();
 					return false;
 				} else {
 					var reg = /^[0-9A-Za-z]+$/;
-					if(!reg.exec(u.val())) {
+					if(!reg.exec(u)) {
 						$("#ts").html("用户名错误");
 						is_show();
 						return false;
 					} else {
 						$("#loginform").submit();
 					}
-
 				}
 			});
 			window.onload = function() {
@@ -89,13 +93,11 @@
 					"left": "0%"
 				}, 400);
 			}
-
 			function is_hide() {
 				$(".alert").animate({
 					"top": "-40%"
 				}, 300)
 			}
-
 			function is_show() {
 				$(".alert").show().animate({
 					"top": "45%"

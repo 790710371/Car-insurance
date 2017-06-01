@@ -32,7 +32,6 @@ public class LoginDao implements ILoginDao{
 				ResultSet set = pst.executeQuery();
 				if(set.next()){
 					System.out.println("登陆成功");
-				requests.getSession().setAttribute("loginInfo", info);//保存到session
 				flag = set.getInt(4);
 				System.out.println("flag:"+flag);
 					return true;

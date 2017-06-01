@@ -17,6 +17,7 @@ import com.safeCar.Service.impl.RegisterService;
 import com.safeCar.Service.impl.LoginService.LoginListener;
 import com.safeCar.Service.impl.RegisterService.IFailCallback;
 import com.safeCar.Service.impl.RegisterService.ISuccessCallback;
+import com.safeCar.tools.BaseUtils;
 
 /**
  * Servlet implementation class UserServlet
@@ -54,6 +55,7 @@ public class UserServlet extends HttpServlet {
 						String usr_carID = request.getParameter("usr_carID");
 						String usr_account = request.getParameter("usr_account");
 						String usr_pwd = request.getParameter("usr_pwd");
+						System.out.println(usr_name);
 						User user = new User();
 						user.setUsr_name(usr_name);
 						user.setUsr_email(usr_email);
@@ -93,65 +95,68 @@ public class UserServlet extends HttpServlet {
 						});
 						break;
 					case Config.VALUE_LOGIN:
-						//登录
-						LoginInfo info = new LoginInfo();
-						String account = request.getParameter("usr_account");
-						String pwd =request.getParameter("usr_pwd");
-						info.setUsr_account(account);
-						info.setUsr_pwd(pwd);
-						LoginService loginService = new LoginService(info, request);
-						loginService.login(new LoginListener() {
-							
-							@Override
-							public void userLogined() {
-								try {
-									request.getRequestDispatcher("/UserInfo.jsp").forward(request, response);
-								} catch (ServletException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								} catch (IOException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
+//						boolean isSessionExist = BaseUtils.isSessionExist(request);
+//						if(isSessionExist){
+//							request.getRequestDispatcher("usr_query.jsp").forward(request, response);
+//						}else{
+							//登录
+							LoginInfo info = new LoginInfo();
+							String account = request.getParameter("usr_account");
+							String pwd =request.getParameter("usr_pwd");
+							info.setUsr_account(account);
+							info.setUsr_pwd(pwd);
+							LoginService loginService = new LoginService(info, request);
+							loginService.login(new LoginListener() {
+								
+								@Override
+								public void userLogined() {
+									try {
+										request.getRequestDispatcher("/UserInfo.jsp").forward(request, response);
+									} catch (ServletException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
 								}
-							}
-							
-							@Override
-							public void managerLogined() {
-								System.out.println("管理员登录成功");
-								try {
-									request.getRequestDispatcher("/usr_query.jsp").forward(request, response);
-								} catch (ServletException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								} catch (IOException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
+								
+								@Override
+								public void managerLogined() {
+									System.out.println("管理员登录成功");
+									try {
+										request.getRequestDispatcher("/usr_query.jsp").forward(request, response);
+									} catch (ServletException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
 								}
-							}
-							
-							@Override
-							public void loginFail() {
-								try {
-									request.getRequestDispatcher("/login.jsp").forward(request, response);
-								} catch (ServletException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								} catch (IOException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
+								
+								@Override
+								public void loginFail() {
+									try {
+										request.getRequestDispatcher("/login.jsp").forward(request, response);
+									} catch (ServletException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
 								}
-							}
-						});
+							});
 						break;
 					case Config.VALUE_LOGOUT:
 						System.out.println("正在准备注销");
 					HttpSession session = 	request.getSession();
 					if(null==session){
-						System.out.println("登录注销");
-						request.getRequestDispatcher("/login.jsp").forward(request, response);
+						response.sendRedirect(request.getContextPath()+"/login.jsp") ;
 					}
-					session.removeAttribute("logininfo");
-					request.getRequestDispatcher("/login.jsp").forward(request, response);
+					session.invalidate();
+					response.sendRedirect(request.getContextPath()+"/login.jsp") ;
 					break;
 					}
 				}

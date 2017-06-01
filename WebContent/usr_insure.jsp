@@ -148,8 +148,6 @@
 											<button class="layui-btn layui-btn-small"><i class="layui-icon"><img style="width: 18px;height:18px;margin-top:5px"src="img/car_set.png"/></i></button>
 										</div>
 									</td>
-									
-									</td>
 								</tr>
 								<tr>
 									<td>2</td>
@@ -172,7 +170,6 @@
 											<button class="layui-btn layui-btn-small"><i class="layui-icon"><img style="width: 18px;height:18px;margin-top:5px"src="img/car_set.png"/></i></button>
 										</div>
 									</td>
-								</tr>
 								</tr>
 							</tbody>
 						</table>

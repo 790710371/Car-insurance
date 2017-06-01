@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.safeCar.Config;
+import com.safeCar.tools.BaseUtils;
 
 /**
  * Servlet implementation class AdminQueryServlet
@@ -29,11 +30,23 @@ public class AdminServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String action = request.getParameter(Config.KEY_ACTION);
+	doPost(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		System.out.println("session存在");
+		String action = request.getParameter(Config.KEY_ACTION);//action
+		String page = request.getParameter(Config.VALUE_PAGE);//查询的页码
 		if(action!=null){
 			switch (action) {
 			case Config.VALUE_ADMIN_QUERY:
-				//管理员查询用户信息
+				String usr_name=request.getParameter("usr_name");//姓名
+				//查询用户信息
+				response.getWriter().print("{'pages':500,'usr_info':[{'usr_account':'Mero','usr_name':'张三','usr_email':'790710371@qq.com','usr_phone':'17865676554','usr_IDcard':'420212125521223255','usr_carID':'粤x:4s5a52'},{'usr_account':'Mero','usr_name':'张三','usr_email':'790710371@qq.com','usr_phone':'17865676554','usr_IDcard':'420212125521223255','usr_carID':'粤x:4s5a52'},{'usr_account':'Mero','usr_name':'张三','usr_email':'790710371@qq.com','usr_phone':'17865676554','usr_IDcard':'420212125521223255','usr_carID':'粤x:4s5a52'},{'usr_account':'Mero','usr_name':'张三','usr_email':'790710371@qq.com','usr_phone':'17865676554','usr_IDcard':'420212125521223255','usr_carID':'粤x:4s5a52'},{'usr_account':'Mero','usr_name':'张三','usr_email':'790710371@qq.com','usr_phone':'17865676554','usr_IDcard':'420212125521223255','usr_carID':'粤x:4s5a52'},{'usr_account':'Mero','usr_name':'张三','usr_email':'790710371@qq.com','usr_phone':'17865676554','usr_IDcard':'420212125521223255','usr_carID':'粤x:4s5a52'},{'usr_account':'Mero','usr_name':'张三','usr_email':'790710371@qq.com','usr_phone':'17865676554','usr_IDcard':'420212125521223255','usr_carID':'粤x:4s5a52'},{'usr_account':'Mero','usr_name':'张三','usr_email':'790710371@qq.com','usr_phone':'17865676554','usr_IDcard':'420212125521223255','usr_carID':'粤x:4s5a52'},{'usr_account':'Mero','usr_name':'张三','usr_email':'790710371@qq.com','usr_phone':'17865676554','usr_IDcard':'420212125521223255','usr_carID':'粤x:4s5a52'},{'usr_account':'Mero','usr_name':'张三','usr_email':'790710371@qq.com','usr_phone':'17865676554','usr_IDcard':'420212125521223255','usr_carID':'粤x:4s5a52'}]}");
 				break;
 			case Config.VALUE_ADD_USER:
 				//添加新用户
@@ -49,15 +62,6 @@ public class AdminServlet extends HttpServlet {
 				break;
 			}
 		}
-	
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

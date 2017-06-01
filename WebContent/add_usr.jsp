@@ -115,7 +115,7 @@
 <!-- 此处填写tab里面的内容 -->
 					<div class="register">
 		<div class="register_bar" style="margin-left: 100px">
-			<form class="layui-form" action="<%=request.getContextPath()%>/LR.action?action=Register" method="post">
+			<form class="layui-form" action="<%=request.getContextPath()%>/LR?action=Register" method="post">
 				<div class="layui-form-item">
 					<label class="layui-form-label">用户名</label>
 					<div class="layui-input-inline">
@@ -146,11 +146,11 @@
 					</div>
 				</div>
 				<div class="layui-form-item">
-					<label class="layui-form-label" >身份证</label>
+					<label class="layui-form-label">身份证号码</label>
 					<div class="layui-input-inline">
-						<input  type="text" name="usr_IDcard" required
+						<input type="text" name="usr_IDcard" required
 							lay-verify="required" placeholder="请输入身份证号码" autocomplete="off"
-							class="layui-input" >
+							class="layui-input">
 					</div>
 				</div>
 				<div class="layui-form-item">
@@ -167,19 +167,15 @@
 							placeholder="请输入手机号" autocomplete="off" class="layui-input">
 					</div>
 				</div>
-				<div style="margin-left: 50px">
-					<button id="submitForm" class="layui-btn" lay-submit
-						lay-filter="formDemo">立即提交</button>
-					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
-				</div>
 			</form>
 		</div>
+		<div id="add_banner"><button id="submitForm" class="layui-btn" lay-submit
+			lay-filter="formDemo">立即提交</button>
+		<button type="reset" class="layui-btn layui-btn-primary">重置</button></div></div>
+		
+		
 	</div>
-					
-					
-					
-					
-					</div>
+	</div>
 												
 <div id="page_query" style="text-align: center;"></div> 
 

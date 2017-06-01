@@ -1,6 +1,7 @@
 package com.safeCar.Service.impl;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.safeCar.Bean.LoginInfo;
 import com.safeCar.Dao.impl.LoginDao;
@@ -19,6 +20,12 @@ public class LoginService implements ILoginService{
 			boolean isLoginedflag = loginDao.query(info, request);
 			System.out.println(String.valueOf(isLoginedflag));
 			if(isLoginedflag){
+				//登录成功后，把session保存起来
+				System.out.println(isLoginedflag);
+				HttpSession session = request.getSession();
+				session.setAttribute("userinfo", info);
+				System.out.println(session.getAttribute("userinfo"));
+				System.out.println("登录之后的"+session);
 				if(loginDao.verifyIdentity()){
 					listener.managerLogined();
 				}else {
