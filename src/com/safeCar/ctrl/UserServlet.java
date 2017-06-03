@@ -12,11 +12,11 @@ import javax.servlet.http.HttpSession;
 import com.safeCar.Config;
 import com.safeCar.Bean.LoginInfo;
 import com.safeCar.Bean.User;
-import com.safeCar.Service.impl.LoginService;
-import com.safeCar.Service.impl.RegisterService;
-import com.safeCar.Service.impl.LoginService.LoginListener;
-import com.safeCar.Service.impl.RegisterService.IFailCallback;
-import com.safeCar.Service.impl.RegisterService.ISuccessCallback;
+import com.safeCar.Service.impl.LoginServiceImpl;
+import com.safeCar.Service.impl.RegisterServiceImpl;
+import com.safeCar.Service.impl.LoginServiceImpl.LoginListener;
+import com.safeCar.Service.impl.RegisterServiceImpl.IFailCallback;
+import com.safeCar.Service.impl.RegisterServiceImpl.ISuccessCallback;
 import com.safeCar.tools.BaseUtils;
 
 /**
@@ -66,7 +66,7 @@ public class UserServlet extends HttpServlet {
 						in.setUsr_account(usr_account);
 						in.setUsr_pwd(usr_pwd);
 						user.setUsr_loginInfo(in);
-						RegisterService userService = new RegisterService(user);
+						RegisterServiceImpl userService = new RegisterServiceImpl(user);
 						userService.register(new ISuccessCallback() {
 							
 							@Override
@@ -105,7 +105,8 @@ public class UserServlet extends HttpServlet {
 							String pwd =request.getParameter("usr_pwd");
 							info.setUsr_account(account);
 							info.setUsr_pwd(pwd);
-							LoginService loginService = new LoginService(info, request);
+							System.out.println(account);
+							LoginServiceImpl loginService = new LoginServiceImpl(info, request);
 							loginService.login(new LoginListener() {
 								
 								@Override

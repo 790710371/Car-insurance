@@ -10,10 +10,10 @@ import com.safeCar.Bean.User;
 import com.safeCar.Dao.IRegisterDao;
 import com.safeCar.tools.DBUtils;
 
-public class RegisterDao implements IRegisterDao{
+public class RegisterDaoImpl implements IRegisterDao{
 	private User user;
 	private Connection conn;
-	public RegisterDao(User user){
+	public RegisterDaoImpl(User user){
 		this.user = user;
 	}
 	@Override

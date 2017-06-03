@@ -11,10 +11,10 @@ import com.safeCar.Bean.LoginInfo;
 import com.safeCar.Dao.ILoginDao;
 import com.safeCar.tools.DBUtils;
 
-public class LoginDao implements ILoginDao{
+public class LoginDaoImpl implements ILoginDao{
 	LoginInfo info;
 	int flag;
-	public LoginDao(LoginInfo info){
+	public LoginDaoImpl(LoginInfo info){
 		this.info = info;
 	}
 	@Override

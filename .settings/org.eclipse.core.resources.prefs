@@ -1,4 +1,4 @@
 eclipse.preferences.version=1
 encoding//WebContent/assets/css/admin.css=UTF-8
-encoding//src/com/safeCar/Dao/impl/LoginDao.java=UTF-8
+encoding//src/com/safeCar/Dao/impl/LoginDaoImpl.java=UTF-8
 encoding//src/com/safeCar/ctrl/UserServlet.java=UTF-8

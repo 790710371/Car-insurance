@@ -4,19 +4,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.safeCar.Bean.LoginInfo;
-import com.safeCar.Dao.impl.LoginDao;
+import com.safeCar.Dao.impl.LoginDaoImpl;
 import com.safeCar.Service.ILoginService;
 
-public class LoginService implements ILoginService{
+public class LoginServiceImpl implements ILoginService{
 	LoginInfo info;
 	HttpServletRequest request;
-	public LoginService(LoginInfo info,HttpServletRequest request){
+	public LoginServiceImpl(LoginInfo info,HttpServletRequest request){
 		this.info = info;
 		this.request = request;
 	}
 	@Override
 	public void login(LoginListener listener) {
-			LoginDao loginDao = new LoginDao(info);
+			LoginDaoImpl loginDao = new LoginDaoImpl(info);
 			boolean isLoginedflag = loginDao.query(info, request);
 			System.out.println(String.valueOf(isLoginedflag));
 			if(isLoginedflag){

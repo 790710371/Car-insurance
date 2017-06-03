@@ -1,16 +1,16 @@
 package com.safeCar.Service.impl;
 
 import com.safeCar.Bean.User;
-import com.safeCar.Dao.impl.RegisterDao;
+import com.safeCar.Dao.impl.RegisterDaoImpl;
 import com.safeCar.Service.IUserService;
 
-public class RegisterService implements IUserService{
+public class RegisterServiceImpl implements IUserService{
 	User user;
-	public RegisterService(User user){
+	public RegisterServiceImpl(User user){
 		this.user = user;
 	}
 	public void register( ISuccessCallback successCallback,IFailCallback failCallback){
-		RegisterDao userDao = new RegisterDao(user);
+		RegisterDaoImpl userDao = new RegisterDaoImpl(user);
 		boolean registeredFlag = userDao.query(user);
 		if(!registeredFlag){
 			//开始注册，根据注册结果提供回调接口

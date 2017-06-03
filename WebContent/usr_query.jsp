@@ -24,7 +24,7 @@
 		<meta name="apple-mobile-web-app-title" content="Amaze UI" />
 		<link rel="stylesheet" href="assets/css/amazeui.min.css" />
 		<link rel="stylesheet" href="assets/css/admin.css" />
-		<link rel="stylesheet" href="layui/css/layui.css" />
+		<link rel="stylesheet" href="layui/css/layui.css" media="all"/>
 		<script src="assets/js/jquery.min.js"></script>
 		<script src="assets/js/app.js"></script>
 		<script src="layui/layui.js"></script>
@@ -142,6 +142,7 @@
 									<col width="150">
 									<col width="200">
 									<col width="200">
+									<col width="200">
 								</colgroup>
 								<thead>
 									<tr>
@@ -179,7 +180,7 @@
 				$.ajax({
 					type:'POST'
 					,url:'adm'
-					,data:"action=AdminQuery&usr_name="+name+"&page=1"
+					,data:"action=AdminQuery&usr_name="+name
 					,success:function(res){
 					    data =  eval("("+res+")");
 					    data = data.usr_info;
@@ -199,6 +200,7 @@
 						laypage({
 						    cont: 'page_query',
 						    pages: pages,
+						    skin: '#009688',
 						    jump: function(obj){
 						        document.getElementById('biuuu_city_list').innerHTML = thisDate(obj.curr);
 						    }

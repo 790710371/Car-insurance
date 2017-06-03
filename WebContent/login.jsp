@@ -2,12 +2,6 @@
 	contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%
- response.setHeader("Pragma","No-cache");
- response.setHeader("Cache-Control","No-cache");
- response.setDateHeader("Expires", -1);
- response.setHeader("Cache-Control", "No-store");
-%>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 
@@ -58,11 +52,7 @@
 		<script src="http://apps.bdimg.com/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
 		<script src="js/supersized.3.2.7.min.js" type="text/javascript"></script>
 		<script src="js/supersized-init.js" type="text/javascript"></script>
-		<script type="text/javascript">
-			$(".zhuce").click(function () {
-				window.location.href = "register.jsp";
-			})
-		</script>
+		
 		<script type="text/javascript">
 			$(".btn").click(function() {
 				is_hide();
@@ -103,6 +93,11 @@
 					"top": "45%"
 				}, 300)
 			}
+		</script>
+		<script type="text/javascript">
+			$(".zhuce").click(function () {
+				window.location.href = "register.jsp";
+			})
 		</script>
 	</body>
 

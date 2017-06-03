@@ -9,7 +9,7 @@ package com.safeCar.Bean;
 public class LoginInfo {
 
 	/**id*/
-	private Integer id;
+	private int login_info_id ;
 	/** ÓÃ»§Ãû */
 	private String usr_account;
 
@@ -20,11 +20,11 @@ public class LoginInfo {
 	private int flag;
 
 	public Integer getId() {
-		return id;
+		return login_info_id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId(int login_info_id) {
+		this.login_info_id = login_info_id;
 	}
 
 	public String getUsr_account() {
@@ -61,9 +61,9 @@ public class LoginInfo {
 		super();
 	}
 
-	public LoginInfo(Integer id, String usr_account, String usr_pwd, int flag) {
+	public LoginInfo(int login_info_id, String usr_account, String usr_pwd, int flag) {
 		super();
-		this.id = id;
+		this.login_info_id = login_info_id;
 		this.usr_account = usr_account;
 		this.usr_pwd = usr_pwd;
 		this.flag = flag;
