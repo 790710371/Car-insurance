@@ -16,6 +16,7 @@ import com.safeCar.tools.DBUtils;
 
 public class InsureDaoImpl implements IInsureDao{
 	private static final int CASH_TO_INSURE = 5000;//每年投保所需要的固定费用
+	private static final int CASH_TO_FIX = 250;//每次修车的固定费用
 	private Connection conn;
 		public InsureDaoImpl(){
 			conn = (Connection) DBUtils.getConnection();
@@ -54,8 +55,8 @@ public class InsureDaoImpl implements IInsureDao{
 		String sql = "UPDATE `user_cash_left` SET `usr_cash`=? WHERE id_cash_left=?";
 		try {
 			PreparedStatement pst = conn.prepareStatement(sql);
-			pst.setInt(1, id);
-			pst.setInt(2, total_money);
+			pst.setInt(1, total_money);
+			pst.setInt(2, id);
 			pst.executeUpdate();
 			//进行数据库流的一个关闭操作
 			DBUtils.closeConnection(conn);
@@ -134,7 +135,7 @@ public class InsureDaoImpl implements IInsureDao{
 	@Override
 	public List<User> getUserList(String user_name) {
 		List<User> list_user = new ArrayList<User>();//用来存储查询到的用户
-		String sql = "SELECT user.id,logininfo.usr_account,user.usr_name,user_cash_left.usr_cash FROM user,logininfo,user_cash_left where user.login_info_id=logininfo.login_info_id and user.id_cash_left = user_cash_left.id_cash_left and where user.name = ?";
+		String sql = "SELECT user.id,logininfo.usr_account,user.usr_name,user_cash_left.usr_cash FROM user,logininfo,user_cash_left where user.login_info_id=logininfo.login_info_id and user.id_cash_left = user_cash_left.id_cash_left and user.usr_name = ?";
 		try {
 			PreparedStatement pst = conn.prepareStatement(sql);
 			pst.setString(1, user_name);
@@ -144,7 +145,9 @@ public class InsureDaoImpl implements IInsureDao{
 				String usr_account= set.getString(2);
 				String usr_name = set.getString(3);
 				int usr_cash = set.getInt(4);
+				System.out.println("id:"+id+"usr_account:"+usr_account+"usr_name:"+usr_name+"usr_cash:"+usr_cash);
 				User user = new User();
+				user.setId(id);
 				user.setUsr_name(usr_name);
 				LoginInfo info = new LoginInfo();
 				info.setUsr_account(usr_account);
@@ -153,12 +156,30 @@ public class InsureDaoImpl implements IInsureDao{
 				user.setUsr_loginInfo(info);
 				user.setUsr_balance(userCashLeft);
 				list_user.add(user);
-				return list_user;
 			}
+			return list_user;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
 	}
+	@Override
+	public boolean fix(int id,int money) {
+		//扣除之后的余额
+		int leftMoney = money-CASH_TO_FIX;
+		//更新扣除之后的余额
+		String sql = "UPDATE `user_cash_left` SET `usr_cash`=? WHERE id_cash_left=?";
+		try {
+			PreparedStatement pst = conn.prepareStatement(sql);
+			pst.setInt(1, leftMoney);
+			pst.setInt(2, id);
+			pst.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+}
 }

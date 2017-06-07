@@ -18,7 +18,7 @@
 	<div class="register">
 		<h1>用户注册</h1>
 		<div class="register_bar">
-			<form class="layui-form" action="<%=request.getContextPath()%>/LR?action=Register" method="post">
+			<form class="layui-form" action="<%=request.getContextPath()%>/LR.action?action=Register" method="post">
 				<div class="layui-form-item">
 					<label class="layui-form-label">用户名</label>
 					<div class="layui-input-inline">

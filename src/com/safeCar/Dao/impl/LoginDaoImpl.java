@@ -31,6 +31,7 @@ public class LoginDaoImpl implements ILoginDao{
 				System.out.println("usr_account:"+usr_account+"usr_pwd:"+usr_pwd);
 				ResultSet set = pst.executeQuery();
 				if(set.next()){
+					System.out.println(set);
 					System.out.println("登陆成功");
 				flag = set.getInt(4);
 				System.out.println("flag:"+flag);

@@ -20,6 +20,8 @@
 		<link rel="stylesheet" href="layui/css/layui.css" />
 		<script src="assets/js/jquery.min.js"></script>
 		<script src="assets/js/app.js"></script>
+		<script src="laypage/laypage/laypage.js"></script>
+		<script src="layer-v3.0.3/layer/layer.js"></script>
 	</head>
 
 		<!--[if lte IE 9]><p class="browsehappy">升级你的浏览器吧！ <a href="http://se.360.cn/" target="_blank">升级浏览器</a>以获得更好的体验！</p><![endif]-->
@@ -37,7 +39,7 @@
 
 				<div class="nav-navicon admin-main admin-sidebar">
 
-					<div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"> 欢迎系统管理员：清风抚雪</div>
+					<div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"> 欢迎系统管理员：Mero</div>
 					<div class="sideMenu">
 						<h3 class="am-icon-flag"><em></em> <a href="#">商户管理</a></h3>
 						<ul>
@@ -115,9 +117,9 @@
 						<a href="#">用户投保</a>
 					</dl>
 					<div class="layui-input-inline" style="margin-top:3px;margin-left:50%">
-						<input type="text" name="username" lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+						<input type="text" name="username" lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input"/>
 					</div>
-					<button class="layui-btn layui-btn-normal" style="display: inline-block;margin-top:3px;margin-left:1.5%">搜索</button>
+					<button onclick="search()" class="layui-btn layui-btn-normal" style="display: inline-block;margin-top:3px;margin-left:1.5%">搜索</button>
 					<!--这里打开的是新页面-->
 				</div>
 				<div class="tab_content_01">
@@ -127,7 +129,7 @@
 								<col width="100">
 								<col width="200">
 								<col width="150">
-								<col width="100">
+								<col width="150">
 							</colgroup>
 							<thead>
 								<tr>
@@ -137,52 +139,20 @@
 									<th>余额</th>
 								</tr>
 							</thead>
-							<tbody>
-								<tr>
-									<td>1</td>
-									<td>Mero</td>
-									<td>李凤</td>
-									<td>5000元
-										<div class="layui-btn-group" style="margin-left:50px">
-											<button class="layui-btn layui-btn-small"><i class="layui-icon"><img style="width: 18px;height:18px;margin-top:5px"src="img/insure.png"/></i></button>
-											<button class="layui-btn layui-btn-small"><i class="layui-icon"><img style="width: 18px;height:18px;margin-top:5px"src="img/car_set.png"/></i></button>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>Alsa</td>
-									<td>李凤</td>
-									<td>5000元
-										<div class="layui-btn-group" style="margin-left:50px">
-											<button class="layui-btn layui-btn-small"><i class="layui-icon"><img style="width: 18px;height:18px;margin-top:5px"src="img/insure.png"/></i></button>
-											<button class="layui-btn layui-btn-small"><i class="layui-icon"><img style="width: 18px;height:18px;margin-top:5px"src="img/car_set.png"/></i></button>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td>Fsa</td>
-									<td>李凤</td>
-									<td>5000元
-										<div class="layui-btn-group" style="margin-left:50px">
-											<button class="layui-btn layui-btn-small"><i class="layui-icon"><img style="width: 18px;height:18px;margin-top:5px"src="img/insure.png"/></i></button>
-											<button class="layui-btn layui-btn-small"><i class="layui-icon"><img style="width: 18px;height:18px;margin-top:5px"src="img/car_set.png"/></i></button>
-										</div>
-									</td>
-								</tr>
+							<tbody id="biuuu_city_list">
+								
 							</tbody>
 						</table>
 					</div>
+							<div id="page_query" style="text-align: center;"></div>
 				</div>
 				</br>
 				<hr>
-				<div class="usr_notice"><p style="display: inline-block;">注意：&nbsp;&nbsp;</p><button class="layui-btn layui-btn-small"><i class="layui-icon"><img style="width: 18px;height:18px;margin-top:5px"src="img/insure.png"/></i></button>代表投保；	<button class="layui-btn layui-btn-small"><i class="layui-icon"><img style="width: 18px;height:18px;margin-top:5px"src="img/car_set.png"/></i></button>代表修车</div>
+				<div class="usr_notice"><p style="display: inline-block;">注意：&nbsp;&nbsp;</p><button class="layui-btn layui-btn-small"><i class="layui-icon"><img style="width: 18px;height:18px;margin-top:5px"src="img/insure.png"/></i></button>&nbsp;投保；	<button class="layui-btn layui-btn-small"><i class="layui-icon"><img style="width: 18px;height:18px;margin-top:5px"src="img/car_set.png"/></i></button>&nbsp;修车；<button class="layui-btn layui-btn-small"><i class="layui-icon"><img style="width: 18px;height:18px;margin-top:5px"src="img/recharge.png"/></i></button>&nbsp;充值；</div>
 			</div>
 
 			</div>
 
-			</div>
 
 			<!--[if lt IE 9]>
 <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
@@ -197,5 +167,910 @@
 			<!--<![endif]-->
 
 		</body>
+		<script>
+			function search(){
+				var s_name =$('.layui-input').val();
+				if(s_name==''){
+					alert('提示：搜索内容不能为空！！！');
+					return;
+				}
+				var data ;
+				$.ajax(
+				{
+					type:'POST'
+					,url:'adm.action'
+					,data:"action=AdminQueryInsure&usr_name="+s_name
+					,success:function(res){
+						 data =  eval("("+res+")");
+						    data = data.usr_info;
+						    var nums = 5; //每页出现的数量
+							var pages = Math.ceil(data.length/nums); //得到总页数
+
+							var thisDate = function(curr){
+							    var str = '', last = curr*nums - 1;
+							    last = last >= data.length ? (data.length-1) : last;
+							    for(var i = (curr*nums - nums); i <= last; i++){
+							        str += '<tr>'+'<td>'+data[i].id+'</td>'+'<td>'+data[i].usr_account+'</td>'+'<td>'+data[i].usr_name+'</td>'+'<td><div style="width:100px;height:25px;display:inline-block;color:red" class="yuan">'+data[i].usr_cash+'元</div>'+'<div style="display:inline" id="btn_group"><button data-method="notice" id="btn_01" style="margin-left:5px;" class="layui-btn layui-btn-small"><i class="layui-icon"><img style="width: 18px;height:18px;margin-top:5px" src="img/insure.png"/></i></button><button id="btn_02" class="layui-btn layui-btn-small"><i class="layui-icon"><img style="width: 18px;height:18px;margin-top:5px" src="img/car_set.png"/></i></button>'+'<button id="btn_03" style="margin-left:10px" class="layui-btn layui-btn-small"><i class="layui-icon"><img style="width: 18px;height:18px;margin-top:5px" src="img/recharge.png"/></i></button></div>'+'</td>'+'</tr>';
+							    }
+							    return str;
+							};
+
+							//调用分页
+							laypage({
+							    cont: 'page_query',
+							    pages: pages,
+							    skin: '#009688',
+							    jump: function(obj){
+							        document.getElementById('biuuu_city_list').innerHTML = thisDate(obj.curr);
+							        	
+							        
+							        
+							        	  $('#biuuu_city_list tr').eq(0).find('#btn_group').on('click','#btn_01',function(){
+							        		//示范一个公告层
+							        		  layer.open({
+							        		    type: 1
+							        		    ,title: '温馨提示' //不显示标题栏
+							        		    ,closeBtn: false
+							        		    ,area: '300px;'
+							        		    ,shade: 0.3
+							        		    ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+							        		    ,resize: false
+							        		    ,btn: ['确定投保', '取消']
+							        		    ,btnAlign: 'c'
+							        		    ,moveType: 1 //拖拽模式，0或者1
+							        		    ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">欢迎使用本系统，<br>正在提示你是否选择投保，如果需要投保请点击下面的确定按钮<br>不需要则点击取消！</div>'
+							        		    ,success: function(layero){
+							        		      $(".layui-layer-btn0").click(function(){
+							        		    	  $.ajax({
+															type:'POST'
+																,url:'adm.action'
+																,data:"action=Insure&usr_account="+data[nums*(obj.curr-1)].usr_account
+																,success:function(res){
+																	var s0_x = eval("("+res+")");
+																	layer.open({
+																		  type: 1
+																		  ,offset: '250px' //具体配置参考：offset参数项
+																		  ,content: '<div style="padding: 20px 80px;">'+s0_x.message+'</div>'
+																		  ,btn: '关闭全部'
+																		  ,btnAlign: 'c' //按钮居中
+																		  ,shade: 0 //不显示遮罩
+																		  ,yes: function(){
+																			  $.ajax(
+																						{
+																							type:'POST'
+																							,url:'adm.action'
+																							,data:"action=QueryCash&usr_account="+data[nums*(obj.curr-1)].usr_account
+																							,success:function(res){
+																								var s0_x = eval("("+res+")");
+																								var cash = s0_x.usr_cash;
+																								 $('.yuan').eq(0).html(cash+'元');
+																							}
+																						,error:function(res){
+																							
+																						}
+																						});
+																		   		 layer.closeAll();
+																		  }
+																		});
+																}
+																,error:function(res){
+																	alert("无法连接服务器");
+																}
+														});
+							        		      });
+							        		    }
+							        		  });
+							        		 
+											});
+							        			
+							        	  
+							        	  
+							        	  
+							        	  
+							        	  $('#biuuu_city_list tr').eq(0).find('#btn_group').on('click','#btn_02',function(){
+							        		//示范一个公告层
+							        		  layer.open({
+							        		    type: 1
+							        		    ,title: '温馨提示' //不显示标题栏
+							        		    ,closeBtn: false
+							        		    ,area: '300px;'
+							        		    ,shade: 0.3
+							        		    ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+							        		    ,resize: false
+							        		    ,btn: ['确定修车', '取消']
+							        		    ,btnAlign: 'c'
+							        		    ,moveType: 1 //拖拽模式，0或者1
+							        		    ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">欢迎使用本系统，<br>正在提示你是否选择修车，如果需要修车请点击下面的确定按钮<br>不需要则点击取消！</div>'
+							        		    ,success: function(layero){
+							        		      $(".layui-layer-btn0").click(function(){
+							        		    	  $.ajax({
+															type:'POST'
+																,url:'adm.action'
+																,data:"action=Fix&usr_account="+data[nums*(obj.curr-1)].usr_account
+																,success:function(res){
+																	var s0_x = eval("("+res+")");
+																	layer.open({
+																		  type: 1
+																		  ,offset: '250px' //具体配置参考：offset参数项
+																		  ,content: '<div style="padding: 20px 80px;">'+s0_x.message+'</div>'
+																		  ,btn: '关闭全部'
+																		  ,btnAlign: 'c' //按钮居中
+																		  ,shade: 0 //不显示遮罩
+																		  ,yes: function(){
+																			  $.ajax(
+																						{
+																							type:'POST'
+																							,url:'adm.action'
+																							,data:"action=QueryCash&usr_account="+data[nums*(obj.curr-1)].usr_account
+																							,success:function(res){
+																								var s0_x = eval("("+res+")");
+																								var cash = s0_x.usr_cash;
+																								 $('.yuan').eq(0).html(cash+'元');
+																							}
+																						,error:function(res){
+																							
+																						}
+																						});
+																		   		 layer.closeAll();
+																		  }
+																		});
+																}
+																,error:function(res){
+																	alert("无法连接服务器");
+																}
+														});
+							        		      });
+							        		    }
+							        		  });
+											});
+							        	  $('#biuuu_city_list tr').eq(0).find('#btn_group').on('click','#btn_03',function(){
+							        		  layer.open({
+							        		    type: 1
+							        		    ,title: '温馨提示' //不显示标题栏
+							        		    ,closeBtn: false
+							        		    ,area: '300px;'
+							        		    ,shade: 0.3
+							        		    ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+							        		    ,resize: false
+							        		    ,btn: ['确定充值', '取消']
+							        		    ,btnAlign: 'c'
+							        		    ,moveType: 1 //拖拽模式，0或者1
+							        		    ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">欢迎使用本系统,<br>正在提示你是否选择充值<br>需要充值请点击下面的确定按钮<br><br><input id="recharge" style="color:#000" type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入充值金额" class="layui-input"></div>'
+							        		    ,success: function(layero){
+							        		      $(".layui-layer-btn0").click(function(){
+							        		    	  var usr_cash = $('#recharge').val();
+							        		    	  $.ajax({
+															type:'POST'
+																,url:'adm.action'
+																,data:"action=Recharge&usr_account="+data[nums*(obj.curr-1)].usr_account+'&usr_cash='+usr_cash
+																,success:function(res){
+																	var s0_x = eval("("+res+")");
+																	layer.open({
+																		  type: 1
+																		  ,offset: '250px' //具体配置参考：offset参数项
+																		  ,content: '<div style="padding: 20px 80px;">'+s0_x.message+'</div>'
+																		  ,btn: '关闭全部'
+																		  ,btnAlign: 'c' //按钮居中
+																		  ,shade: 0 //不显示遮罩
+																		  ,yes: function(){
+																				$.ajax(
+																						{
+																							type:'POST'
+																							,url:'adm.action'
+																							,data:"action=QueryCash&usr_account="+data[nums*(obj.curr-1)].usr_account
+																							,success:function(res){
+																								var s0_x = eval("("+res+")");
+																								var cash = s0_x.usr_cash;
+																								 $('.yuan').eq(0).html(cash+'元');
+																							}
+																						,error:function(res){
+																							
+																						}
+																						});
+																		   		 layer.closeAll();
+																		  	}
+																		});
+																}
+																,error:function(res){
+																	alert("无法连接服务器");
+																}
+														});
+							        		      });
+							        		     
+							        		    }
+							        		  });
+											});
+							        	  
+							        	  $('#biuuu_city_list tr').eq(1).find('#btn_group').on('click','#btn_01',function(){
+							        		//示范一个公告层
+							        		  layer.open({
+							        		    type: 1
+							        		    ,title: '温馨提示' //不显示标题栏
+							        		    ,closeBtn: false
+							        		    ,area: '300px;'
+							        		    ,shade: 0.3
+							        		    ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+							        		    ,resize: false
+							        		    ,btn: ['确定投保', '取消']
+							        		    ,btnAlign: 'c'
+							        		    ,moveType: 1 //拖拽模式，0或者1
+							        		    ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">欢迎使用本系统，<br>正在提示你是否选择投保，如果需要投保请点击下面的确定按钮<br>不需要则点击取消！</div>'
+							        		    ,success: function(layero){
+							        		      $(".layui-layer-btn0").click(function(){
+							        		    	  $.ajax({
+															type:'POST'
+																,url:'adm.action'
+																,data:"action=Insure&usr_account="+data[nums*(obj.curr-1)+1].usr_account
+																,success:function(res){
+																	var s0_x = eval("("+res+")");
+																	layer.open({
+																		  type: 1
+																		  ,offset: '250px' //具体配置参考：offset参数项
+																		  ,content: '<div style="padding: 20px 80px;">'+s0_x.message+'</div>'
+																		  ,btn: '关闭全部'
+																		  ,btnAlign: 'c' //按钮居中
+																		  ,shade: 0 //不显示遮罩
+																		  ,yes: function(){
+																			  $.ajax(
+																						{
+																							type:'POST'
+																							,url:'adm.action'
+																							,data:"action=QueryCash&usr_account="+data[nums*(obj.curr-1)+1].usr_account
+																							,success:function(res){
+																								var s0_x = eval("("+res+")");
+																								var cash = s0_x.usr_cash;
+																								 $('.yuan').eq(1).html(cash+'元');
+																							}
+																						,error:function(res){
+																							
+																						}
+																						});
+																		   		 layer.closeAll();
+																		  }
+																		});
+																}
+																,error:function(res){
+																	alert("无法连接服务器");
+																}
+														});
+							        		      });
+							        		    }
+							        		  });
+											});
+							        			
+							        	  $('#biuuu_city_list tr').eq(1).find('#btn_group').on('click','#btn_02',function(){
+							        		//示范一个公告层
+							        		  layer.open({
+							        		    type: 1
+							        		    ,title: '温馨提示' //不显示标题栏
+							        		    ,closeBtn: false
+							        		    ,area: '300px;'
+							        		    ,shade: 0.3
+							        		    ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+							        		    ,resize: false
+							        		    ,btn: ['确定修车', '取消']
+							        		    ,btnAlign: 'c'
+							        		    ,moveType: 1 //拖拽模式，0或者1
+							        		    ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">欢迎使用本系统，<br>正在提示你是否选择修车，如果需要修车请点击下面的确定按钮<br>不需要则点击取消！</div>'
+							        		    ,success: function(layero){
+							        		      $(".layui-layer-btn0").click(function(){
+							        		    	  $.ajax({
+															type:'POST'
+																,url:'adm.action'
+																,data:"action=Fix&usr_account="+data[nums*(obj.curr-1)+1].usr_account
+																,success:function(res){
+																	var s0_x = eval("("+res+")");
+																	layer.open({
+																		  type: 1
+																		  ,offset: '250px' //具体配置参考：offset参数项
+																		  ,content: '<div style="padding: 20px 80px;">'+s0_x.message+'</div>'
+																		  ,btn: '关闭全部'
+																		  ,btnAlign: 'c' //按钮居中
+																		  ,shade: 0 //不显示遮罩
+																		  ,yes: function(){
+																			  $.ajax(
+																						{
+																							type:'POST'
+																							,url:'adm.action'
+																							,data:"action=QueryCash&usr_account="+data[nums*(obj.curr-1)+1].usr_account
+																							,success:function(res){
+																								var s0_x = eval("("+res+")");
+																								var cash = s0_x.usr_cash;
+																								 $('.yuan').eq(1).html(cash+'元');
+																							}
+																						,error:function(res){
+																							
+																						}
+																						});
+																		   		 layer.closeAll();
+																		  }
+																		});
+																}
+																,error:function(res){
+																	alert("无法连接服务器");
+																}
+														});
+							        		      });
+							        		    }
+							        		  });
+											});
+							        	  $('#biuuu_city_list tr').eq(1).find('#btn_group').on('click','#btn_03',function(){
+							        		  layer.open({
+								        		    type: 1
+								        		    ,title: '温馨提示' //不显示标题栏
+								        		    ,closeBtn: false
+								        		    ,area: '300px;'
+								        		    ,shade: 0.3
+								        		    ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+								        		    ,resize: false
+								        		    ,btn: ['确定充值', '取消']
+								        		    ,btnAlign: 'c'
+								        		    ,moveType: 1 //拖拽模式，0或者1
+								        		    ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">欢迎使用本系统,<br>正在提示你是否选择充值<br>需要充值请点击下面的确定按钮<br><br><input id="recharge" style="color:#000" type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入充值金额" class="layui-input"></div>'
+								        		    ,success: function(layero){
+								        		      $(".layui-layer-btn0").click(function(){
+								        		    	  var usr_cash = $('#recharge').val();
+								        		    	  $.ajax({
+																type:'POST'
+																	,url:'adm.action'
+																	,data:"action=Recharge&usr_account="+data[nums*(obj.curr-1)+1].usr_account+'&usr_cash='+usr_cash
+																	,success:function(res){
+																		var s0_x = eval("("+res+")");
+																		layer.open({
+																			  type: 1
+																			  ,offset: '250px' //具体配置参考：offset参数项
+																			  ,content: '<div style="padding: 20px 80px;">'+s0_x.message+'</div>'
+																			  ,btn: '关闭全部'
+																			  ,btnAlign: 'c' //按钮居中
+																			  ,shade: 0 //不显示遮罩
+																			  ,yes: function(){
+																					$.ajax(
+																							{
+																								type:'POST'
+																								,url:'adm.action'
+																								,data:"action=QueryCash&usr_account="+data[nums*(obj.curr-1)+1].usr_account
+																								,success:function(res){
+																									var s0_x = eval("("+res+")");
+																									var cash = s0_x.usr_cash;
+																									 $('.yuan').eq(1).html(cash+'元');
+																								}
+																							,error:function(res){
+																								
+																							}
+																							});
+																			   		 layer.closeAll();
+																			  	}
+																			});
+																	}
+																	,error:function(res){
+																		alert("无法连接服务器");
+																	}
+															});
+								        		      });
+								        		     
+								        		    }
+								        		  });
+											});
+							        	  
+							        	  $('#biuuu_city_list tr').eq(2).find('#btn_group').on('click','#btn_01',function(){
+							        		//示范一个公告层
+							        		  layer.open({
+							        		    type: 1
+							        		    ,title: '温馨提示' //不显示标题栏
+							        		    ,closeBtn: false
+							        		    ,area: '300px;'
+							        		    ,shade: 0.3
+							        		    ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+							        		    ,resize: false
+							        		    ,btn: ['确定投保', '取消']
+							        		    ,btnAlign: 'c'
+							        		    ,moveType: 1 //拖拽模式，0或者1
+							        		    ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">欢迎使用本系统，<br>正在提示你是否选择投保，如果需要投保请点击下面的确定按钮<br>不需要则点击取消！</div>'
+							        		    ,success: function(layero){
+							        		      $(".layui-layer-btn0").click(function(){
+							        		    	  $.ajax({
+															type:'POST'
+																,url:'adm.action'
+																,data:"action=Insure&usr_account="+data[nums*(obj.curr-1)+2].usr_account
+																,success:function(res){
+																	var s0_x = eval("("+res+")");
+																	layer.open({
+																		  type: 1
+																		  ,offset: '250px' //具体配置参考：offset参数项
+																		  ,content: '<div style="padding: 20px 80px;">'+s0_x.message+'</div>'
+																		  ,btn: '关闭全部'
+																		  ,btnAlign: 'c' //按钮居中
+																		  ,shade: 0 //不显示遮罩
+																		  ,yes: function(){
+																			  $.ajax(
+																						{
+																							type:'POST'
+																							,url:'adm.action'
+																							,data:"action=QueryCash&usr_account="+data[nums*(obj.curr-1)+2].usr_account
+																							,success:function(res){
+																								var s0_x = eval("("+res+")");
+																								var cash = s0_x.usr_cash;
+																								 $('.yuan').eq(2).html(cash+'元');
+																							}
+																						,error:function(res){
+																							
+																						}
+																						});
+																		   		 layer.closeAll();
+																		  }
+																		});
+																}
+																,error:function(res){
+																	alert("无法连接服务器");
+																}
+														});
+							        		      });
+							        		    }
+							        		  });
+											});
+							        			
+							        	  $('#biuuu_city_list tr').eq(2).find('#btn_group').on('click','#btn_02',function(){
+							        		//示范一个公告层
+							        		  layer.open({
+							        		    type: 1
+							        		    ,title: '温馨提示' //不显示标题栏
+							        		    ,closeBtn: false
+							        		    ,area: '300px;'
+							        		    ,shade: 0.3
+							        		    ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+							        		    ,resize: false
+							        		    ,btn: ['确定修车', '取消']
+							        		    ,btnAlign: 'c'
+							        		    ,moveType: 1 //拖拽模式，0或者1
+							        		    ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">欢迎使用本系统，<br>正在提示你是否选择修车，如果需要修车请点击下面的确定按钮<br>不需要则点击取消！</div>'
+							        		    ,success: function(layero){
+							        		      $(".layui-layer-btn0").click(function(){
+							        		    	  $.ajax({
+															type:'POST'
+																,url:'adm.action'
+																,data:"action=Fix&usr_account="+data[nums*(obj.curr-1)+2].usr_account
+																,success:function(res){
+																	var s0_x = eval("("+res+")");
+																	layer.open({
+																		  type: 1
+																		  ,offset: '250px' //具体配置参考：offset参数项
+																		  ,content: '<div style="padding: 20px 80px;">'+s0_x.message+'</div>'
+																		  ,btn: '关闭全部'
+																		  ,btnAlign: 'c' //按钮居中
+																		  ,shade: 0 //不显示遮罩
+																		  ,yes: function(){
+																			  $.ajax(
+																						{
+																							type:'POST'
+																							,url:'adm.action'
+																							,data:"action=QueryCash&usr_account="+data[nums*(obj.curr-1)+2].usr_account
+																							,success:function(res){
+																								var s0_x = eval("("+res+")");
+																								var cash = s0_x.usr_cash;
+																								 $('.yuan').eq(2).html(cash+'元');
+																							}
+																						,error:function(res){
+																							
+																						}
+																						});
+																		   		 layer.closeAll();
+																		  }
+																		});
+																}
+																,error:function(res){
+																	alert("无法连接服务器");
+																}
+														});
+							        		      });
+							        		    }
+							        		  });
+											});
+							        	  $('#biuuu_city_list tr').eq(2).find('#btn_group').on('click','#btn_03',function(){
+							        		  layer.open({
+								        		    type: 1
+								        		    ,title: '温馨提示' //不显示标题栏
+								        		    ,closeBtn: false
+								        		    ,area: '300px;'
+								        		    ,shade: 0.3
+								        		    ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+								        		    ,resize: false
+								        		    ,btn: ['确定充值', '取消']
+								        		    ,btnAlign: 'c'
+								        		    ,moveType: 1 //拖拽模式，0或者1
+								        		    ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">欢迎使用本系统,<br>正在提示你是否选择充值<br>需要充值请点击下面的确定按钮<br><br><input id="recharge" style="color:#000" type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入充值金额" class="layui-input"></div>'
+								        		    ,success: function(layero){
+								        		      $(".layui-layer-btn0").click(function(){
+								        		    	  var usr_cash = $('#recharge').val();
+								        		    	  $.ajax({
+																type:'POST'
+																	,url:'adm.action'
+																	,data:"action=Recharge&usr_account="+data[nums*(obj.curr-1)+2].usr_account+'&usr_cash='+usr_cash
+																	,success:function(res){
+																		var s0_x = eval("("+res+")");
+																		layer.open({
+																			  type: 1
+																			  ,offset: '250px' //具体配置参考：offset参数项
+																			  ,content: '<div style="padding: 20px 80px;">'+s0_x.message+'</div>'
+																			  ,btn: '关闭全部'
+																			  ,btnAlign: 'c' //按钮居中
+																			  ,shade: 0 //不显示遮罩
+																			  ,yes: function(){
+																					$.ajax(
+																							{
+																								type:'POST'
+																								,url:'adm.action'
+																								,data:"action=QueryCash&usr_account="+data[nums*(obj.curr-1)+2].usr_account
+																								,success:function(res){
+																									var s0_x = eval("("+res+")");
+																									var cash = s0_x.usr_cash;
+																									 $('.yuan').eq(2).html(cash+'元');
+																								}
+																							,error:function(res){
+																								
+																							}
+																							});
+																			   		 layer.closeAll();
+																			  	}
+																			});
+																	}
+																	,error:function(res){
+																		alert("无法连接服务器");
+																	}
+															});
+								        		      });
+								        		     
+								        		    }
+								        		  });
+											});
+							        	  $('#biuuu_city_list tr').eq(3).find('#btn_group').on('click','#btn_01',function(){
+							        		//示范一个公告层
+							        		  layer.open({
+							        		    type: 1
+							        		    ,title: '温馨提示' //不显示标题栏
+							        		    ,closeBtn: false
+							        		    ,area: '300px;'
+							        		    ,shade: 0.3
+							        		    ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+							        		    ,resize: false
+							        		    ,btn: ['确定投保', '取消']
+							        		    ,btnAlign: 'c'
+							        		    ,moveType: 1 //拖拽模式，0或者1
+							        		    ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">欢迎使用本系统，<br>正在提示你是否选择投保，如果需要投保请点击下面的确定按钮<br>不需要则点击取消！</div>'
+							        		    ,success: function(layero){
+							        		      $(".layui-layer-btn0").click(function(){
+							        		    	  $.ajax({
+															type:'POST'
+																,url:'adm.action'
+																,data:"action=Insure&usr_account="+data[nums*(obj.curr-1)+3].usr_account
+																,success:function(res){
+																	var s0_x = eval("("+res+")");
+																	layer.open({
+																		  type: 1
+																		  ,offset: '250px' //具体配置参考：offset参数项
+																		  ,content: '<div style="padding: 20px 80px;">'+s0_x.message+'</div>'
+																		  ,btn: '关闭全部'
+																		  ,btnAlign: 'c' //按钮居中
+																		  ,shade: 0 //不显示遮罩
+																		  ,yes: function(){
+																			  $.ajax(
+																						{
+																							type:'POST'
+																							,url:'adm.action'
+																							,data:"action=QueryCash&usr_account="+data[nums*(obj.curr-1)+3].usr_account
+																							,success:function(res){
+																								var s0_x = eval("("+res+")");
+																								var cash = s0_x.usr_cash;
+																								 $('.yuan').eq(3).html(cash+'元');
+																							}
+																						,error:function(res){
+																							
+																						}
+																						});
+																		   		 layer.closeAll();
+																		  }
+																		});
+																}
+																,error:function(res){
+																	alert("无法连接服务器");
+																}
+														});
+							        		      });
+							        		    }
+							        		  });
+											});
+							        			
+							        	  $('#biuuu_city_list tr').eq(3).find('#btn_group').on('click','#btn_02',function(){
+							        		//示范一个公告层
+							        		  layer.open({
+							        		    type: 1
+							        		    ,title: '温馨提示' //不显示标题栏
+							        		    ,closeBtn: false
+							        		    ,area: '300px;'
+							        		    ,shade: 0.3
+							        		    ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+							        		    ,resize: false
+							        		    ,btn: ['确定修车', '取消']
+							        		    ,btnAlign: 'c'
+							        		    ,moveType: 1 //拖拽模式，0或者1
+							        		    ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">欢迎使用本系统，<br>正在提示你是否选择修车，如果需要修车请点击下面的确定按钮<br>不需要则点击取消！</div>'
+							        		    ,success: function(layero){
+							        		      $(".layui-layer-btn0").click(function(){
+							        		    	  $.ajax({
+															type:'POST'
+																,url:'adm.action'
+																,data:"action=Fix&usr_account="+data[nums*(obj.curr-1)+3].usr_account
+																,success:function(res){
+																	var s0_x = eval("("+res+")");
+																	layer.open({
+																		  type: 1
+																		  ,offset: '250px' //具体配置参考：offset参数项
+																		  ,content: '<div style="padding: 20px 80px;">'+s0_x.message+'</div>'
+																		  ,btn: '关闭全部'
+																		  ,btnAlign: 'c' //按钮居中
+																		  ,shade: 0 //不显示遮罩
+																		  ,yes: function(){
+																			  $.ajax(
+																						{
+																							type:'POST'
+																							,url:'adm.action'
+																							,data:"action=QueryCash&usr_account="+data[nums*(obj.curr-1)+3].usr_account
+																							,success:function(res){
+																								var s0_x = eval("("+res+")");
+																								var cash = s0_x.usr_cash;
+																								 $('.yuan').eq(3).html(cash+'元');
+																							}
+																						,error:function(res){
+																							
+																						}
+																						});
+																		   		 layer.closeAll();
+																		  }
+																		});
+																}
+																,error:function(res){
+																	alert("无法连接服务器");
+																}
+														});
+							        		      });
+							        		    }
+							        		  });
+											});
+							        	  $('#biuuu_city_list tr').eq(3).find('#btn_group').on('click','#btn_03',function(){
+							        		  layer.open({
+								        		    type: 1
+								        		    ,title: '温馨提示' //不显示标题栏
+								        		    ,closeBtn: false
+								        		    ,area: '300px;'
+								        		    ,shade: 0.3
+								        		    ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+								        		    ,resize: false
+								        		    ,btn: ['确定充值', '取消']
+								        		    ,btnAlign: 'c'
+								        		    ,moveType: 1 //拖拽模式，0或者1
+								        		    ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">欢迎使用本系统,<br>正在提示你是否选择充值<br>需要充值请点击下面的确定按钮<br><br><input id="recharge" style="color:#000" type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入充值金额" class="layui-input"></div>'
+								        		    ,success: function(layero){
+								        		      $(".layui-layer-btn0").click(function(){
+								        		    	  var usr_cash = $('#recharge').val();
+								        		    	  $.ajax({
+																type:'POST'
+																	,url:'adm.action'
+																	,data:"action=Recharge&usr_account="+data[nums*(obj.curr-1)+3].usr_account+'&usr_cash='+usr_cash
+																	,success:function(res){
+																		var s0_x = eval("("+res+")");
+																		layer.open({
+																			  type: 1
+																			  ,offset: '250px' //具体配置参考：offset参数项
+																			  ,content: '<div style="padding: 20px 80px;">'+s0_x.message+'</div>'
+																			  ,btn: '关闭全部'
+																			  ,btnAlign: 'c' //按钮居中
+																			  ,shade: 0 //不显示遮罩
+																			  ,yes: function(){
+																					$.ajax(
+																							{
+																								type:'POST'
+																								,url:'adm.action'
+																								,data:"action=QueryCash&usr_account="+data[nums*(obj.curr-1)+3].usr_account
+																								,success:function(res){
+																									var s0_x = eval("("+res+")");
+																									var cash = s0_x.usr_cash;
+																									 $('.yuan').eq(3).html(cash+'元');
+																								}
+																							,error:function(res){
+																								
+																							}
+																							});
+																			   		 layer.closeAll();
+																			  	}
+																			});
+																	}
+																	,error:function(res){
+																		alert("无法连接服务器");
+																	}
+															});
+								        		      });
+								        		     
+								        		    }
+								        		  });
+											});
+							        	  $('#biuuu_city_list tr').eq(4).find('#btn_group').on('click','#btn_01',function(){
+							        		//示范一个公告层
+							        		  layer.open({
+							        		    type: 1
+							        		    ,title: '温馨提示' //不显示标题栏
+							        		    ,closeBtn: false
+							        		    ,area: '300px;'
+							        		    ,shade: 0.3
+							        		    ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+							        		    ,resize: false
+							        		    ,btn: ['确定投保', '取消']
+							        		    ,btnAlign: 'c'
+							        		    ,moveType: 1 //拖拽模式，0或者1
+							        		    ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">欢迎使用本系统，<br>正在提示你是否选择投保，如果需要投保请点击下面的确定按钮<br>不需要则点击取消！</div>'
+							        		    ,success: function(layero){
+							        		      $(".layui-layer-btn0").click(function(){
+							        		    	  $.ajax({
+															type:'POST'
+																,url:'adm.action'
+																,data:"action=Insure&usr_account="+data[nums*(obj.curr-1)+4].usr_account
+																,success:function(res){
+																	var s0_x = eval("("+res+")");
+																	layer.open({
+																		  type: 1
+																		  ,offset: '250px' //具体配置参考：offset参数项
+																		  ,content: '<div style="padding: 20px 80px;">'+s0_x.message+'</div>'
+																		  ,btn: '关闭全部'
+																		  ,btnAlign: 'c' //按钮居中
+																		  ,shade: 0 //不显示遮罩
+																		  ,yes: function(){
+																			  $.ajax(
+																						{
+																							type:'POST'
+																							,url:'adm.action'
+																							,data:"action=QueryCash&usr_account="+data[nums*(obj.curr-1)+4].usr_account
+																							,success:function(res){
+																								var s0_x = eval("("+res+")");
+																								var cash = s0_x.usr_cash;
+																								 $('.yuan').eq(4).html(cash+'元');
+																							}
+																						,error:function(res){
+																							
+																						}
+																						});
+																		   		 layer.closeAll();
+																		  }
+																		});
+																}
+																,error:function(res){
+																	alert("无法连接服务器");
+																}
+														});
+							        		      });
+							        		    }
+							        		  });
+											});
+							        			
+							        	  $('#biuuu_city_list tr').eq(4).find('#btn_group').on('click','#btn_02',function(){
+							        		//示范一个公告层
+							        		  layer.open({
+							        		    type: 1
+							        		    ,title: '温馨提示' //不显示标题栏
+							        		    ,closeBtn: false
+							        		    ,area: '300px;'
+							        		    ,shade: 0.3
+							        		    ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+							        		    ,resize: false
+							        		    ,btn: ['确定修车', '取消']
+							        		    ,btnAlign: 'c'
+							        		    ,moveType: 1 //拖拽模式，0或者1
+							        		    ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">欢迎使用本系统，<br>正在提示你是否选择修车，如果需要修车请点击下面的确定按钮<br>不需要则点击取消！</div>'
+							        		    ,success: function(layero){
+							        		      $(".layui-layer-btn0").click(function(){
+							        		    	  $.ajax({
+															type:'POST'
+																,url:'adm.action'
+																,data:"action=Fix&usr_account="+data[nums*(obj.curr-1)+4].usr_account
+																,success:function(res){
+																	var s0_x = eval("("+res+")");
+																	layer.open({
+																		  type: 1
+																		  ,offset: '250px' //具体配置参考：offset参数项
+																		  ,content: '<div style="padding: 20px 80px;">'+s0_x.message+'</div>'
+																		  ,btn: '关闭全部'
+																		  ,btnAlign: 'c' //按钮居中
+																		  ,shade: 0 //不显示遮罩
+																		  ,yes: function(){
+																			  $.ajax(
+																						{
+																							type:'POST'
+																							,url:'adm.action'
+																							,data:"action=QueryCash&usr_account="+data[nums*(obj.curr-1)+4].usr_account
+																							,success:function(res){
+																								var s0_x = eval("("+res+")");
+																								var cash = s0_x.usr_cash;
+																								 $('.yuan').eq(4).html(cash+'元');
+																							}
+																						,error:function(res){
+																							
+																						}
+																						});
+																		   		 layer.closeAll();
+																		  }
+																		});
+																}
+																,error:function(res){
+																	alert("无法连接服务器");
+																}
+														});
+							        		      });
+							        		    }
+							        		  });
+											});
+							        	  $('#biuuu_city_list tr').eq(4).find('#btn_group').on('click','#btn_03',function(){
+							        		  layer.open({
+								        		    type: 1
+								        		    ,title: '温馨提示' //不显示标题栏
+								        		    ,closeBtn: false
+								        		    ,area: '300px;'
+								        		    ,shade: 0.3
+								        		    ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+								        		    ,resize: false
+								        		    ,btn: ['确定充值', '取消']
+								        		    ,btnAlign: 'c'
+								        		    ,moveType: 1 //拖拽模式，0或者1
+								        		    ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">欢迎使用本系统,<br>正在提示你是否选择充值<br>需要充值请点击下面的确定按钮<br><br><input id="recharge" style="color:#000" type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入充值金额" class="layui-input"></div>'
+								        		    ,success: function(layero){
+								        		      $(".layui-layer-btn0").click(function(){
+								        		    	  var usr_cash = $('#recharge').val();
+								        		    	  $.ajax({
+																type:'POST'
+																	,url:'adm.action'
+																	,data:"action=Recharge&usr_account="+data[nums*(obj.curr-1)+4].usr_account+'&usr_cash='+usr_cash
+																	,success:function(res){
+																		var s0_x = eval("("+res+")");
+																		layer.open({
+																			  type: 1
+																			  ,offset: '250px' //具体配置参考：offset参数项
+																			  ,content: '<div style="padding: 20px 80px;">'+s0_x.message+'</div>'
+																			  ,btn: '关闭全部'
+																			  ,btnAlign: 'c' //按钮居中
+																			  ,shade: 0 //不显示遮罩
+																			  ,yes: function(){
+																					$.ajax(
+																							{
+																								type:'POST'
+																								,url:'adm.action'
+																								,data:"action=QueryCash&usr_account="+data[nums*(obj.curr-1)+4].usr_account
+																								,success:function(res){
+																									var s0_x = eval("("+res+")");
+																									var cash = s0_x.usr_cash;
+																									 $('.yuan').eq(4).html(cash+'元');
+																								}
+																							,error:function(res){
+																								
+																							}
+																							});
+																			   		 layer.closeAll();
+																			  	}
+																			});
+																	}
+																	,error:function(res){
+																		alert("无法连接服务器");
+																	}
+															});
+								        		      });
+								        		     
+								        		    }
+								        		  });
+											});
+							    }
+							})
+					}
+					,error:function(res){
+						alert("error");
+					}
+				
+				});
+			}
+		</script>
 
 </html>

@@ -23,7 +23,7 @@
 	<body oncontextmenu="return false">
 		<div class="page-container">
 			<h1>欢迎登陆</h1>
-			<form id="loginform" action="<%=request.getContextPath()%>/LR?action=Login" method="post" commandName="user">
+			<form id="loginform" action="<%=request.getContextPath()%>/LR.action?action=Login" method="post" commandName="user">
 				<div>
 					<input type="text" name="usr_account" class="username" placeholder="用户名" autocomplete="off" />
 				</div>

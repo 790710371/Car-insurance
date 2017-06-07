@@ -10,7 +10,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>UserServlet</servlet-name>
-    <url-pattern>/LR</url-pattern>
+    <url-pattern>/LR.action</url-pattern>
   </servlet-mapping>
   
   <servlet>
@@ -19,7 +19,7 @@
   </servlet>
   <servlet-mapping>
   	<servlet-name>AdminServlet</servlet-name>
-  	<url-pattern>/adm</url-pattern>
+  	<url-pattern>/adm.action</url-pattern>
   </servlet-mapping>
     <!--中文乱码处理过滤-->    
     <filter>  
@@ -47,5 +47,9 @@
   <filter-mapping>
   	<filter-name>sessionFilter</filter-name>
   	<url-pattern>*.jsp</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+  	<filter-name>sessionFilter</filter-name>
+  	<url-pattern>*.action</url-pattern>
   </filter-mapping>
 </web-app>

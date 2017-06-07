@@ -179,7 +179,7 @@
 				var data ;
 				$.ajax({
 					type:'POST'
-					,url:'adm'
+					,url:'adm.action'
 					,data:"action=AdminQuery&usr_name="+name
 					,success:function(res){
 					    data =  eval("("+res+")");

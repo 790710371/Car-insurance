@@ -3,7 +3,6 @@ package com.safeCar.ctrl;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,11 +12,10 @@ import com.safeCar.Config;
 import com.safeCar.Bean.LoginInfo;
 import com.safeCar.Bean.User;
 import com.safeCar.Service.impl.LoginServiceImpl;
-import com.safeCar.Service.impl.RegisterServiceImpl;
 import com.safeCar.Service.impl.LoginServiceImpl.LoginListener;
+import com.safeCar.Service.impl.RegisterServiceImpl;
 import com.safeCar.Service.impl.RegisterServiceImpl.IFailCallback;
 import com.safeCar.Service.impl.RegisterServiceImpl.ISuccessCallback;
-import com.safeCar.tools.BaseUtils;
 
 /**
  * Servlet implementation class UserServlet
@@ -127,6 +125,7 @@ public class UserServlet extends HttpServlet {
 									System.out.println("管理员登录成功");
 									try {
 										request.getRequestDispatcher("/usr_query.jsp").forward(request, response);
+										return ;
 									} catch (ServletException e) {
 										// TODO Auto-generated catch block
 										e.printStackTrace();
@@ -140,6 +139,7 @@ public class UserServlet extends HttpServlet {
 								public void loginFail() {
 									try {
 										request.getRequestDispatcher("/login.jsp").forward(request, response);
+										return;
 									} catch (ServletException e) {
 										// TODO Auto-generated catch block
 										e.printStackTrace();

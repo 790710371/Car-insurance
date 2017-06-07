@@ -17,4 +17,6 @@ public interface IInsureDao {
 		public boolean insertInsureRecord(String nowTime,int ret_count);
 		//更新返现次数
 		public boolean insureCountUpdate(int id,int ret_count);
+		//余额修车
+		public boolean fix(int id,int money);
 }

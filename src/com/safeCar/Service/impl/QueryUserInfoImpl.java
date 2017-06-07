@@ -18,7 +18,7 @@ public class QueryUserInfoImpl implements IQueryUserInfo{
 			if(size%5!=0){
 				//说明不够一页，此时页码数为size/5+1
 				pages = size/5+1;
-				//把所有数据封装成json数据
+				//把所有数据封装成json数据发给前端
 				StringBuilder sb = new StringBuilder("");
 				sb.append("{'pages':").append(pages).append(",'usr_info':[");
 				for(User u:user_list){

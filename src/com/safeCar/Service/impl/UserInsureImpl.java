@@ -24,7 +24,7 @@ public class UserInsureImpl implements IUserInsure{
 				sb.append("{'pages':").append(pages).append(",'usr_info':[");
 				for(User u:user_list){
 						sb.append("{'id':").append(u.getId());
-						sb.append("{'usr_account':").append("'").append(u.getUsr_loginInfo().getUsr_account()).append("'");
+						sb.append(",'usr_account':").append("'").append(u.getUsr_loginInfo().getUsr_account()).append("'");
 						sb.append(",'usr_name':").append("'").append(u.getUsr_name()).append("'");
 						sb.append(",'usr_cash':").append(u.getUsr_balance().getMoney());
 						sb.append("},");
