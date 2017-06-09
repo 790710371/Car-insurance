@@ -1,6 +1,9 @@
 package com.safeCar.Service;
 
+import java.util.List;
+
+import com.safeCar.Bean.OperateRecord;
+
 public interface IOperateService {
-	public void insertOperateRecord(Object ...objects );
-	public String getOperateType(String url);
+	public String getJsonString(List<OperateRecord> list);
 }

@@ -8,7 +8,8 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-
+import javax.servlet.annotation.WebFilter;
+@WebFilter(urlPatterns = "/*", asyncSupported = true) 
 public class EncodingFilter implements Filter {  
 	  
     protected FilterConfig filterConfig = null; //≥ı ºªØ≈‰÷√  

@@ -3,6 +3,7 @@ package com.safeCar.ctrl;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,6 +43,7 @@ public class UserServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+				request.setAttribute("org.apache.catalina.ASYNC_SUPPORTED", true);
 				String action = request.getParameter(Config.KEY_ACTION);
 				if(null!=action){
 					switch(action){
@@ -111,6 +113,7 @@ public class UserServlet extends HttpServlet {
 								public void userLogined() {
 									try {
 										request.getRequestDispatcher("/UserInfo.jsp").forward(request, response);
+										return;
 									} catch (ServletException e) {
 										// TODO Auto-generated catch block
 										e.printStackTrace();
@@ -125,7 +128,7 @@ public class UserServlet extends HttpServlet {
 									System.out.println("管理员登录成功");
 									try {
 										request.getRequestDispatcher("/usr_query.jsp").forward(request, response);
-										return ;
+										return;
 									} catch (ServletException e) {
 										// TODO Auto-generated catch block
 										e.printStackTrace();
@@ -155,6 +158,7 @@ public class UserServlet extends HttpServlet {
 					HttpSession session = 	request.getSession();
 					if(null==session){
 						response.sendRedirect(request.getContextPath()+"/login.jsp") ;
+						return;
 					}
 					session.invalidate();
 					response.sendRedirect(request.getContextPath()+"/login.jsp") ;

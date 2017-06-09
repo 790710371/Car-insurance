@@ -1,40 +1,44 @@
 package com.safeCar.Service.impl;
 
-import com.safeCar.Config;
+import java.util.List;
+
+import com.safeCar.Bean.OperateRecord;
 import com.safeCar.Dao.impl.OperateRecordDaoImpl;
 import com.safeCar.Service.IOperateService;
 
 public class OperateServiceImpl implements IOperateService{
-
-	@Override
-	public void insertOperateRecord(Object... obj) {
-		OperateRecordDaoImpl operateRecordDaoImpl = new OperateRecordDaoImpl();
-		operateRecordDaoImpl.insertOperateRecord(obj);
+	public  List<OperateRecord> list;
+	public OperateServiceImpl(List<OperateRecord> list){
+		this.list= list;
 	}
 	@Override
-	public  String getOperateType(String url){
-		String action =null;
-		switch(url){
-		case Config.VALUE_ADMIN_QUERY_INSURE:
-			action = "投保查询";
-			break;
-		case Config.VALUE_CAR_FIX:
-			action = "修理车辆";
-			break;
-		case Config.VALUE_DEL_USR:
-			action = "删除用户";
-			break;
-		case Config.VALUE_INSURE:
-			action = "用户投保";
-			break;
-		case Config.VALUE_QUERY_CASH:
-			action = "查询余额";
-			break;
-		case Config.VALUE_RECHARGR:
-			action = "用户充值";
-			break;
+	public String getJsonString(List<OperateRecord> list) {
+		String jsonString = null;
+		int size  = list.size();
+		System.out.println("size的大小："+size);
+		int pages ;
+		if(size!=0){
+			if(size%5!=0){
+				pages = size%5+1;//页码数为size%5+1
+				//把所有数据封装成json数据发给前端
+				StringBuilder sb = new StringBuilder("");
+				sb.append("{'pages':").append(pages).append(",'operate_record':[");
+				for(OperateRecord u:list){
+						sb.append("{'user_id':").append("'").append(u.getUser_id()).append("'");
+						sb.append(",'operate_account':").append("'").append(u.getOperation_account()).append("'");
+						sb.append(",'identity_flag':").append("'").append(u.getIdentity_flag()).append("'");
+						sb.append(",'operate_type':").append("'").append(u.getOperate_type()).append("'");
+						sb.append(",'operate_date':").append("'").append(u.getOperate_date()).append("'");
+						sb.append("},");
+				}
+				sb.deleteCharAt(sb.length()-1);
+				sb.append("]}");
+				jsonString = sb.toString();
+				return jsonString;
+			}
 		}
-		return action;
-	};
-
+	
+		return "";
+	}
+	
 }

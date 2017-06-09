@@ -14,9 +14,7 @@ public class DBUtils {
 		public static Connection getConnection(){
 			Connection conn = null;
 			try{
-				System.out.println("正在加载驱动");
 				Class.forName(Config.JDBC_NAME);
-				System.out.println("加载数据库驱动成功");
 				//加载驱动成功
 				conn = (Connection) DriverManager.getConnection(Config.JDBC_URL, Config.JDBC_USER_NAME, Config.JDBC_USER_PWD);
 			}catch(Exception e){

@@ -127,16 +127,18 @@
 						<table class="layui-table">
 							<colgroup>
 								<col width="100">
+								<col width="100">
+								<col width="120">
+								<col width="150">
 								<col width="200">
-								<col width="150">
-								<col width="150">
 							</colgroup>
 							<thead>
 								<tr>
 									<th>ID</th>
 									<th>用户名</th>
 									<th>姓名</th>
-									<th>余额</th>
+									<th>返现金额</th>
+									<th>可用余额</th>
 								</tr>
 							</thead>
 							<tbody id="biuuu_city_list">
@@ -190,7 +192,7 @@
 							    var str = '', last = curr*nums - 1;
 							    last = last >= data.length ? (data.length-1) : last;
 							    for(var i = (curr*nums - nums); i <= last; i++){
-							        str += '<tr>'+'<td>'+data[i].id+'</td>'+'<td>'+data[i].usr_account+'</td>'+'<td>'+data[i].usr_name+'</td>'+'<td><div style="width:100px;height:25px;display:inline-block;color:red" class="yuan">'+data[i].usr_cash+'元</div>'+'<div style="display:inline" id="btn_group"><button data-method="notice" id="btn_01" style="margin-left:5px;" class="layui-btn layui-btn-small"><i class="layui-icon"><img style="width: 18px;height:18px;margin-top:5px" src="img/insure.png"/></i></button><button id="btn_02" class="layui-btn layui-btn-small"><i class="layui-icon"><img style="width: 18px;height:18px;margin-top:5px" src="img/car_set.png"/></i></button>'+'<button id="btn_03" style="margin-left:10px" class="layui-btn layui-btn-small"><i class="layui-icon"><img style="width: 18px;height:18px;margin-top:5px" src="img/recharge.png"/></i></button></div>'+'</td>'+'</tr>';
+							        str += '<tr>'+'<td>'+data[i].id+'</td>'+'<td>'+data[i].usr_account+'</td>'+'<td>'+data[i].usr_name+'</td>'+'<td>'+data[i].cashback+'元'+'<span class="cash_back" style="margin-left:20px;display:inline-block"><a href="#"><p style="color:#F7B824;display:inline-block"><u>提现</u></p><a/></span>'+'</td>'+'<td><div style="width:100px;height:25px;display:inline-block;color:red" class="yuan">'+data[i].usr_cash+'元</div>'+'<div style="display:inline" id="btn_group"><button data-method="notice" id="btn_01" style="margin-left:5px;" class="layui-btn layui-btn-small"><i class="layui-icon"><img style="width: 18px;height:18px;margin-top:5px" src="img/insure.png"/></i></button><button id="btn_02" class="layui-btn layui-btn-small"><i class="layui-icon"><img style="width: 18px;height:18px;margin-top:5px" src="img/car_set.png"/></i></button>'+'<button id="btn_03" style="margin-left:10px" class="layui-btn layui-btn-small"><i class="layui-icon"><img style="width: 18px;height:18px;margin-top:5px" src="img/recharge.png"/></i></button></div>'+'</td>'+'</tr>';
 							    }
 							    return str;
 							};

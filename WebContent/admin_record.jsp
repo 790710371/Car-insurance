@@ -20,6 +20,8 @@
 <script src="layui/layui.js"></script>
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/app.js"></script>
+<script src="laypage/laypage/laypage.js"></script>
+<script src="layer-v3.0.3/layer/layer.js"></script>
 </head>
 <body>
 <!--[if lte IE 9]><p class="browsehappy">升级你的浏览器吧！ <a href="http://se.360.cn/" target="_blank">升级浏览器</a>以获得更好的体验！</p><![endif]-->
@@ -255,14 +257,35 @@
 <div class="admin-biaogelist">
 	
     <div class="listbiaoti am-cf">
-      <ul class="am-icon-flag on"> 管理记录</ul>
+    	<ul class="am-icon-flag on"> 管理记录</ul>
+    			<div class="layui-form-pane">
+			  <div class="layui-form-item" style="display: inline-block;margin-left:10px;margin-top: 2px">
+			    <label class="layui-form-label">日期选择</label>
+			    <div class="layui-input-inline">
+			      <input class="layui-input" placeholder="开始日" id="LAY_demorange_s">
+			   	 </div> 
+			    	<div class="layui-input-inline">
+			     <input class="layui-input" placeholder="截止日" id="LAY_demorange_e">
+			    	</div>
+			    	<button class="layui-btn layui-btn-normal" id="btn_click">确定</button>
+      				<dl class="am-icon-home" style="float: right;margin-left:240px">当前位置： 管理记录 > <a href="#">操作记录</a></dl>
       
-      <dl class="am-icon-home" style="float: right;">当前位置： 管理记录 > <a href="#">操作记录
+		  			</div>
+				</div> 
+				
       <!--这里打开的是新页面-->
     </div>
 			<div class="tab_content_01">
+			
    
           <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover">
+          <colgroup>
+								<col width="100">
+								<col width="200">
+								<col width="150">
+								<col width="150">
+								<col width="150">
+							</colgroup>
             <thead>
               <tr class="am-success">
 
@@ -270,59 +293,16 @@
                 <th class="table-title">用户名</th>
                 <th class="table-type">用户身份</th>
                 <th class="table-author am-hide-sm-only">操作</th>
-                <th class="table-author am-hide-sm-only">ip地址</th>
                 <th class="table-date am-hide-sm-only">操作日期</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                
-                <td>1</td>
-                <td><a href="#">麻花藤</a></td>
-                <td>管理员</td>
-                <td class="am-hide-sm-only">用户投保</td><td class="am-hide-sm-only">186.26.32.250</td>
-                <td class="am-hide-sm-only">2017年5月19日 7:28:47</td>
-                <!--<td>
-                	
-                	
-                      	
-                	<div class="am-btn-toolbar">
-                    <div class="am-btn-group am-btn-group-xs">
-                      <button class="am-btn am-btn-default am-btn-xs am-text-success am-round"><span class="am-icon-search" title="查看订单详情"></span> </button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改订单"><span class="am-icon-pencil-square-o"></span></button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-danger am-round" title="删除订单"><span class="am-icon-trash-o" ></span></button>
-                    </div>
-                  </div>
-                	
-                	
-                	
-                	
-                	
-                	
-                </td>-->
-              </tr>
-              <tr>
-                <td>2</td>
-                <td><a href="#">王贱林</a></td>
-                <td>管理员</td>
-                <td class="am-hide-sm-only">购买车险</td><td class="am-hide-sm-only">156.12.17.334</td>
-                <td class="am-hide-sm-only">2017年5月19日 7:50:47</td>
-                <!--<td>
-                	
-                	<div class="am-btn-toolbar">
-                    <div class="am-btn-group am-btn-group-xs">
-                      <button class="am-btn am-btn-default am-btn-xs am-text-success am-round"><span class="am-icon-search" title="查看订单详情"></span> </button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改订单"><span class="am-icon-pencil-square-o"></span></button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-danger am-round" title="删除订单"><span class="am-icon-trash-o" ></span></button>
-                    </div>
-                  </div>
-                
-                </td>-->
-              </tr>
+            <tbody id="operate_record_display">
+            
             </tbody>
           </table>
     		<div id="operate_record" style="text-align:center;"></div>
     		</div>
+    		
  
  <div class="foods">
 </div>
@@ -354,16 +334,95 @@
 
 
 </body>
-				<script>
-		layui.use(['laypage', 'layer'], function() {
-			var laypage = layui.laypage,
-				layer = layui.layer;
-
-			laypage({
-				cont: 'operate_record',
-				pages: 100,
-				skip: true
-			});
+	<script>
+	<!--从这里开始是调用日期控件-->
+	layui.use('laydate', function(){
+		  var laydate = layui.laydate;
+		  
+		  var start = {
+		    min: '2017-01-01 23:59:59'
+		    ,max: '2099-06-16 23:59:59'
+		    ,istoday: false
+		    ,choose: function(datas){
+		      end.min = datas; //开始日选好后，重置结束日的最小日期
+		      end.start = datas //将结束日的初始值设定为开始日
+		    }
+		  };
+		  
+		  var end = {
+		    min: laydate.now()
+		    ,max: '2099-06-16 23:59:59'
+		    ,istoday: false
+		    ,choose: function(datas){
+		      start.max = datas; //结束日选好后，重置开始日的最大日期
+		    }
+		  };
+		  
+		  document.getElementById('LAY_demorange_s').onclick = function(){
+		    start.elem = this;
+		    laydate(start);
+		  }
+		  document.getElementById('LAY_demorange_e').onclick = function(){
+		    end.elem = this
+		    laydate(end);
+		  }
 		});
+	var startDate;
+	var endDate;
+	<!--这里监听按钮事件获取日期控件的值-->
+	$('#btn_click').click(function(){
+		 startDate = $('#LAY_demorange_s').val();
+		 endDate = $('#LAY_demorange_e').val();
+		//var arr_s = startDate.split('-');
+		//var arr_t = endDate.split('-');
+		if(startDate==''){
+			alert('请选择开始日期');
+			return;
+		}
+		if(endDate==''){
+			alert('请选择结束日期');
+			return;
+		}
+		 //startDate = arr_s[0]+arr_s[1]+arr_s[2];
+		// endDate = arr_t[0]+arr_t[1]+arr_t[2];
+		// alert(startDate+'  '+endDate);
+		 
+		 <!--从这里开始是查询操作记录-->
+			var data ;
+			$.ajax({
+				type:'POST'
+				,url:'adm.action'
+				,data:"action=QueryOperateRecord&startDate="+startDate+"&endDate="+endDate
+				,success:function(res){
+				    data =  eval("("+res+")");
+				    data = data.operate_record;
+				    var nums = 5; //每页出现的数量
+					var pages = Math.ceil(data.length/nums); //得到总页数
+					var thisDate = function(curr){
+					    var str = '', last = curr*nums - 1;
+					    last = last >= data.length ? (data.length-1) : last;
+					    for(var i = (curr*nums - nums); i <= last; i++){
+					        str += '<tr>'+'<td>'+data[i].user_id+'</td>'+'<td>'+data[i].operate_account+'</td>'+'<td>'+data[i].identity_flag+'</td>'+'<td>'+data[i].operate_type+'</td>'+'<td>'+data[i].operate_date+'</td>'+'</tr>';
+					    }
+					    return str;
+					};
+
+					//调用分页
+					laypage({
+					    cont: 'operate_record',
+					    pages: pages,
+					    skin: '#009688',
+					    jump: function(obj){
+					        document.getElementById('operate_record_display').innerHTML = thisDate(obj.curr);
+					    }
+					})
+				}
+				,error:function(){
+					alert("error");
+				}
+			});
+	});
+	
 	</script>
+	
 </html>

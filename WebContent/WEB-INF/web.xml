@@ -40,6 +40,7 @@
     </filter-mapping>  
   <!--中文乱码处理过滤 --> 
   <!-- session过滤器 -->
+  	
    <filter>
   	<filter-name>sessionFilter</filter-name>
   	<filter-class>com.safeCar.filter.SessionFilter</filter-class>
@@ -51,5 +52,19 @@
   <filter-mapping>
   	<filter-name>sessionFilter</filter-name>
   	<url-pattern>*.action</url-pattern>
+  </filter-mapping>
+   <!-- ip过滤器 -->
+  	
+   <filter>
+  	<filter-name>IPFilter</filter-name>
+  	<filter-class>com.safeCar.filter.IPFilter</filter-class>
+  	 <init-param>
+    <param-name>IPFilter</param-name>
+    <param-value>127.0.0.1</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+  	<filter-name>IPFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
   </filter-mapping>
 </web-app>

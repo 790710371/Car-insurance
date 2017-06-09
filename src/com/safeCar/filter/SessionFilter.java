@@ -8,10 +8,12 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+@WebFilter(urlPatterns = {"*.jsp","*.action"}, asyncSupported = true)
 public class SessionFilter implements Filter{
 
 	
@@ -32,12 +34,12 @@ public class SessionFilter implements Filter{
         String url = request.getServletPath() ;
         System.out.println(url);
         //判断：排除筛选首页和提交登陆页
-        if (!url.contains("/login.jsp")&&!url.contains("/register.jsp")) {
+        if (!url.contains("/login.jsp")&&!url.contains("/register.jsp")&&!url.contains("LR.action")) {
             //session中存入user 
             if (session.getAttribute("userinfo") == null) {
                 response.sendRedirect(request.getContextPath()+"/login.jsp");
+                return;
             } 
-            System.out.println(session.getAttribute("userinfo") );
         }
             arg2.doFilter(request, response);
 	}

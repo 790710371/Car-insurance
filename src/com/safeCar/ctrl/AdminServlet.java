@@ -3,6 +3,7 @@ package com.safeCar.ctrl;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.AsyncContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,20 +11,30 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.safeCar.Config;
+import com.safeCar.Bean.LoginInfo;
+import com.safeCar.Bean.OperateRecord;
 import com.safeCar.Bean.User;
 import com.safeCar.Dao.impl.AdminQueryDaoImpl;
 import com.safeCar.Dao.impl.InsureDaoImpl;
+import com.safeCar.Dao.impl.OperateRecordDaoImpl;
+import com.safeCar.Service.impl.OperateServiceImpl;
 import com.safeCar.Service.impl.QueryUserInfoImpl;
 import com.safeCar.Service.impl.UserInsureImpl;
+import com.safeCar.tools.BaseUtils;
 
 /**
  * Servlet implementation class AdminQueryServlet
  */
-@WebServlet("/AdminQueryServlet")
+@WebServlet(urlPatterns = "/AdminQueryServlet",asyncSupported = true)
 public class AdminServlet extends HttpServlet {
 	private static final int INSURE_CASH = 5000;//投保所需金额
 	private static final int FIX_CASH = 250;//修车一次的费用
 	private static final long serialVersionUID = 1L;
+	OperateRecordDaoImpl daoImpl;
+	AsyncContext asyncContext ;
+	OperateThread thread ;
+	Thread operateThread ;
+	LoginInfo info;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -38,17 +49,14 @@ public class AdminServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	doPost(request, response);
-	}
-
+	doPost(request, response);}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
 		response.setHeader("content-type","text/html;charset=UTF-8");
-		// TODO Auto-generated method stub
-		System.out.println("session存在");
+//		request.setAttribute("org.apache.catalina.ASYNC_SUPPORTED", true);
 		String action = request.getParameter(Config.KEY_ACTION);//action
 		if(action!=null){
 			switch (action) {
@@ -59,7 +67,6 @@ public class AdminServlet extends HttpServlet {
 				List<User> user_list = adminQueryDaoImpl.queryUserInfo(usr_name);
 				String jsonString = new QueryUserInfoImpl().retJsonUserString(user_list);
 				response.getWriter().println(jsonString);
-				//response.getWriter().print("{'pages':500,'usr_info':[{'usr_account':'Mero','usr_name':'张三','usr_email':'790710371@qq.com','usr_phone':'17865676554','usr_IDcard':'420212125521223255','usr_carID':'粤x:4s5a52'},{'usr_account':'Mero','usr_name':'张三','usr_email':'790710371@qq.com','usr_phone':'17865676554','usr_IDcard':'420212125521223255','usr_carID':'粤x:4s5a52'},{'usr_account':'Mero','usr_name':'张三','usr_email':'790710371@qq.com','usr_phone':'17865676554','usr_IDcard':'420212125521223255','usr_carID':'粤x:4s5a52'},{'usr_account':'Mero','usr_name':'张三','usr_email':'790710371@qq.com','usr_phone':'17865676554','usr_IDcard':'420212125521223255','usr_carID':'粤x:4s5a52'},{'usr_account':'Mero','usr_name':'张三','usr_email':'790710371@qq.com','usr_phone':'17865676554','usr_IDcard':'420212125521223255','usr_carID':'粤x:4s5a52'},{'usr_account':'Mero','usr_name':'张三','usr_email':'790710371@qq.com','usr_phone':'17865676554','usr_IDcard':'420212125521223255','usr_carID':'粤x:4s5a52'},{'usr_account':'Mero','usr_name':'张三','usr_email':'790710371@qq.com','usr_phone':'17865676554','usr_IDcard':'420212125521223255','usr_carID':'粤x:4s5a52'},{'usr_account':'Mero','usr_name':'张三','usr_email':'790710371@qq.com','usr_phone':'17865676554','usr_IDcard':'420212125521223255','usr_carID':'粤x:4s5a52'},{'usr_account':'Mero','usr_name':'张三','usr_email':'790710371@qq.com','usr_phone':'17865676554','usr_IDcard':'420212125521223255','usr_carID':'粤x:4s5a52'},{'usr_account':'Mero','usr_name':'张三','usr_email':'790710371@qq.com','usr_phone':'17865676554','usr_IDcard':'420212125521223255','usr_carID':'粤x:4s5a52'}]}");
 				break;
 			case Config.VALUE_ADD_USER:
 				//添加新用户
@@ -69,6 +76,14 @@ public class AdminServlet extends HttpServlet {
 				break;
 			case Config.VALUE_OPEREATE_RECORD:
 				//管理员操作记录
+				String startDate = request.getParameter("startDate");
+				String endDate = request.getParameter("endDate");
+				System.out.println("startDate:"+startDate+"endDate:"+endDate);
+				OperateRecordDaoImpl daoImpl = new OperateRecordDaoImpl();
+				List<OperateRecord> list0 = daoImpl.queryOperateRecord(startDate, endDate);
+				OperateServiceImpl impl = new OperateServiceImpl(list0);
+				String ret_json = impl.getJsonString(impl.list);
+				response.getWriter().println(ret_json);
 				break;
 				//设置管理员
 			case Config.VALUE_SETTING_ADMIN:
@@ -82,19 +97,15 @@ public class AdminServlet extends HttpServlet {
 				//查询用户投保等信息
 			case Config.VALUE_ADMIN_QUERY_INSURE:
 				String usr_name1=request.getParameter("usr_name");//姓名
-				System.out.println(usr_name1);
 				UserInsureImpl userInsureImpl = new UserInsureImpl();
-				System.out.println(userInsureImpl);
 				InsureDaoImpl insureDaoImpl = new InsureDaoImpl();
-				System.out.println(insureDaoImpl);
 				List<User> list = insureDaoImpl.getUserList(usr_name1);
-				System.out.println(list);
-				System.out.println(list);
 				String jsonString1 = userInsureImpl.getJsonString(list);
 				response.getWriter().println(jsonString1);
 				break;
 				//用户充值
 			case Config.VALUE_RECHARGR:
+				System.out.println("正在进行充值");
 				String usr_account0 = request.getParameter("usr_account");
 				int cashToRecharge = Integer.parseInt(request.getParameter("usr_cash"));
 				InsureDaoImpl insureDaoImpl2  =new InsureDaoImpl();
@@ -117,7 +128,7 @@ public class AdminServlet extends HttpServlet {
 				int cash_left = arr[1];//用户余额
 				System.out.println("cash_left_id:"+cash_left_id+"cash_left:"+cash_left);
 				//判断余额是否充足，投保金额不够需要充值
-				if(cash_left<5000){
+				if(cash_left<INSURE_CASH){
 					System.out.println("金额不足");
 					//需要充值
 					response.getWriter().print("{'status':0,'errCode':0x1,'message':'金额不足'}");
@@ -160,6 +171,37 @@ public class AdminServlet extends HttpServlet {
 				}
 				break;
 			}
+			if(action.equals(Config.VALUE_OPEREATE_RECORD)||action.equals(Config.VALUE_REGISTER)){
+				return;
+			}
+			info = (LoginInfo) BaseUtils.getSessionValue(request, "userinfo");
+			daoImpl = new OperateRecordDaoImpl();
+			daoImpl.insertOperateRecord(info.getUsr_account(),action);
+		}
+//		asyncContext = request.startAsync(request,response);
+//		asyncContext.setTimeout(1000*1000);
+//		 thread = new OperateThread(asyncContext, request, action);
+//		 operateThread = new Thread(thread);
+//		operateThread.start();
+	}
+	class OperateThread implements Runnable{
+		AsyncContext asyncContext;
+		HttpServletRequest request ;
+		String operateType;
+		OperateThread(AsyncContext asyncContext,HttpServletRequest request,String operateType ){
+			this.asyncContext = asyncContext;
+			this.request = request;
+			this.operateType = operateType;
+		}
+
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			//保存操作记录
+			info = (LoginInfo) BaseUtils.getSessionValue(request, "userinfo");
+			daoImpl = new OperateRecordDaoImpl();
+			daoImpl.insertOperateRecord(info.getUsr_account(),operateType);
+			 asyncContext.complete();
 		}
 	}
 }
