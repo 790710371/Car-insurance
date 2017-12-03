@@ -1,9 +1,9 @@
-//ÅäÖÃÀà
+//é…ç½®ç±»
 package com.safeCar;
 /*
- * ´Ë´¦½«½¨±íµÄSQLÓï¾äĞ´ÔÚÕâ·½±ã²éÑ¯
+ * æ­¤å¤„å°†å»ºè¡¨çš„SQLè¯­å¥å†™åœ¨è¿™æ–¹ä¾¿æŸ¥è¯¢
  */
-//ÓÃ»§±í
+//ç”¨æˆ·è¡¨
 //create table if not exists `user`(
 //	`id` int unsigned auto_increment PRIMARY KEY,
 //	`usr_name` varchar(100) NOT NULL,
@@ -20,49 +20,49 @@ package com.safeCar;
 //	FOREIGN KEY(`id_insure`) REFERENCES insure_record(id_insure) ON DELETE CASCADE,
 //	FOREIGN KEY(`id_fix`) REFERENCES car_fix_record(id_fix) ON DELETE CASCADE
 //	)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-////µÇÂ¼ĞÅÏ¢±í
+////ç™»å½•ä¿¡æ¯è¡¨
 //create table if not exists `logininfo`(
 //	`login_info_id` int unsigned auto_increment PRIMARY KEY,
 //	`usr_account` varchar(20) NOT NULL,
 //	`usr_pwd` varchar(20) NOT NULL,
 //	`flag` int NOT NULL
 //)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-////ÓÃ»§Óà¶î±í
+////ç”¨æˆ·ä½™é¢è¡¨
 //create table if not exists `user_cash_left`(
 //	`id_cash_left` int unsigned auto_increment PRIMARY KEY,
 //	`usr_cash` int NOT NULL
 //)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-////Í¶±£·µÏÖĞÅÏ¢¼ÇÂ¼±í
+////æŠ•ä¿è¿”ç°ä¿¡æ¯è®°å½•è¡¨
 //create table if not exists `insure_record`(
 //	id_insure int unsigned auto_increment PRIMARY KEY,
-//	`data_insure` datatime NOT NULL£¬
+//	`data_insure` datatime NOT NULLï¼Œ
 //	`ret_count` int NOT NULL
 //)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-////ĞŞ³µĞÅÏ¢¼ÇÂ¼±í
+////ä¿®è½¦ä¿¡æ¯è®°å½•è¡¨
 //create table if not exists `car_fix_record`(
 //	`id_fix` int unsigned auto_increment PRIMARY KEY,
 //	`data_fix_car` datatime NOT NULL
 //)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 public class Config {
-	public static final String JDBC_NAME = "com.mysql.jdbc.Driver";//mysqlÇı¶¯Ãû³Æ
+	public static final String JDBC_NAME = "com.mysql.jdbc.Driver";//mysqlé©±åŠ¨åç§°
 	public static final String JDBC_URL = "jdbc:mysql://localhost:3306/safacar?useUnicode=true&characterEncoding=utf8";
 	public static final String JDBC_USER_NAME = "root";
-	public static final String JDBC_USER_PWD = "1312273072";
+	public static final String JDBC_USER_PWD = "13122";
 	public static final String KEY_ACTION= "action";
-	public static final String TB_USER ="user";//user±í
-	public static final String VALUE_REGISTER = "Register";//×¢Ïú
-	public static final String VALUE_LOGIN = "Login";//µÇÂ¼
-	public static final String VALUE_LOGOUT= "Logout";//×¢Ïú
-	public static final String VALUE_ADMIN_QUERY = "AdminQuery";//²éÑ¯ÓÃ»§
-	public static final String VALUE_DEL_USR = "DelUser";//É¾³ıÓÃ»§
-	public static final String VALUE_ADD_USER = "AddUser";//Ìí¼ÓĞÂÓÃ»§
-	public static final String VALUE_OPEREATE_RECORD="QueryOperateRecord";//²éÑ¯²Ù×÷¼ÇÂ¼
-	public static final String VALUE_SETTING_ADMIN = "SettingAdm";//ÉèÖÃ¹ÜÀíÔ±
-	public static final String VALUE_ADMIN_QUERY_INSURE = "AdminQueryInsure";//Í¶±£½çÃæµÄ²éÑ¯
-	public static final String VALUE_RECHARGR = "Recharge";//ÓÃ»§³äÖµ
-	public static final String VALUE_INSURE = "Insure";//ÓÃ»§Í¶±£
-	public static final String VALUE_CAR_FIX = "Fix";//ÓÃ»§ĞŞ³µ
-	public static final String VALUE_QUERY_CASH="QueryCash";//²éÑ¯ÓÃ»§Óà¶î
+	public static final String TB_USER ="user";//userè¡¨
+	public static final String VALUE_REGISTER = "Register";//æ³¨é”€
+	public static final String VALUE_LOGIN = "Login";//ç™»å½•
+	public static final String VALUE_LOGOUT= "Logout";//æ³¨é”€
+	public static final String VALUE_ADMIN_QUERY = "AdminQuery";//æŸ¥è¯¢ç”¨æˆ·
+	public static final String VALUE_DEL_USR = "DelUser";//åˆ é™¤ç”¨æˆ·
+	public static final String VALUE_ADD_USER = "AddUser";//æ·»åŠ æ–°ç”¨æˆ·
+	public static final String VALUE_OPEREATE_RECORD="QueryOperateRecord";//æŸ¥è¯¢æ“ä½œè®°å½•
+	public static final String VALUE_SETTING_ADMIN = "SettingAdm";//è®¾ç½®ç®¡ç†å‘˜
+	public static final String VALUE_ADMIN_QUERY_INSURE = "AdminQueryInsure";//æŠ•ä¿ç•Œé¢çš„æŸ¥è¯¢
+	public static final String VALUE_RECHARGR = "Recharge";//ç”¨æˆ·å……å€¼
+	public static final String VALUE_INSURE = "Insure";//ç”¨æˆ·æŠ•ä¿
+	public static final String VALUE_CAR_FIX = "Fix";//ç”¨æˆ·ä¿®è½¦
+	public static final String VALUE_QUERY_CASH="QueryCash";//æŸ¥è¯¢ç”¨æˆ·ä½™é¢
 }
 
